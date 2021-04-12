@@ -7,6 +7,6 @@
 
 <configuration>
 	<typeAliases>		
-		<typeAlias alias="Test" type="com.pro.esc.bean.TestBean" />
+		<typeAlias alias="User" type="com.pro.esc.login.UserVO" />
 	</typeAliases>
 </configuration>
