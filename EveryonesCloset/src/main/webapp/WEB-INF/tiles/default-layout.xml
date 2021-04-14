@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<!-- tiles를 생성하는 설정 -->
+<tiles-definitions>
+	<!--  default -->
+	<definition name="layouts-tiles" template="/WEB-INF/views/common/default-layouts.jsp"> <!-- meta(ex font) data -->
+	  	<put-attribute name="header"    	value="/WEB-INF/views/common/default-header.jsp" />
+	  	<put-attribute name="left"    		value="/WEB-INF/views/common/default-left.jsp" />
+	  	<put-attribute name="nav"    		value="/WEB-INF/views/common/default-nav.jsp" />
+	  	<put-attribute name="content"   	value="" />
+	  	<put-attribute name="footer"    	value="/WEB-INF/views/common/default-footer.jsp" />
+	</definition>
+	
+	<definition name="*/*.tiles" extends="layouts-tiles">
+	  	<put-attribute name="content"   value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	
+	<!--  ajax를 위한 tiles : blocks로 전달함. -->
+	<definition name="block-tiles" template="/WEB-INF/views/common/default-content.jsp">
+	  	<put-attribute name="content"   	value="" />
+	</definition>
+	
+	<definition name="*/*.blocks" extends="block-tiles">
+	  	<put-attribute name="content"   value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+</tiles-definitions>

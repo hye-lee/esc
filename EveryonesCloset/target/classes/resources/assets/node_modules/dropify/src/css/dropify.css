@@ -1,0 +1,30 @@
+/*
+Sass::SyntaxError: ".dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-filename span.file-icon" failed to @extend ".dropify-font-empty".
+The selector ".dropify-font-empty" was not found.
+Use "@extend .dropify-font-empty !optional" if the extend should be able to fail.
+
+
+Backtrace:
+C:\Users\Dahye Lee\Desktop\teamDHY\themeforest-16750820-elite-admin-the-ultimate-dashboard-web-app-kit-material-design\assets\node_modules\dropify\src\sass\dropify.scss:247
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/extend.rb:56:in `block in check_extends_fired!'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/util/subset_map.rb:105:in `block in each_value'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/util/subset_map.rb:105:in `each'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/util/subset_map.rb:105:in `each_value'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/extend.rb:51:in `check_extends_fired!'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/extend.rb:16:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:39:in `css_tree'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
+C:/Program Files (x86)/Koala/bin/sass:22:in `load'
+C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Sass::SyntaxError: \".dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-filename span.file-icon\" failed to @extend \".dropify-font-empty\".\A The selector \".dropify-font-empty\" was not found.\A Use \"@extend .dropify-font-empty !optional\" if the extend should be able to fail.\A "; }
