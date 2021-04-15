@@ -9,7 +9,8 @@ public class UserVO {
 	private String userPw;
 	private String userRegDate;
 	private String userStat;
-	
+	private String userPostCode;
+	private String userExAddr;
 
 	public String getUserID() {
 		return userID;
@@ -53,6 +54,21 @@ public class UserVO {
 	public void setUserStat(String userStat) {
 		this.userStat = userStat;
 	}
+	
+	public String getUserPostCode() {
+		return userPostCode;
+	}
+	public void setUserPostCode(String userPostCode) {
+		this.userPostCode = userPostCode;
+	}
+	
+	public String getUserExAddr() {
+		return userExAddr;
+	}
+	public void setUserExAddr(String userExAddr) {
+		this.userExAddr = userExAddr;
+	}
+	
 	
 
 }

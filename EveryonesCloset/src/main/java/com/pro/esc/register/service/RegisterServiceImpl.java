@@ -17,7 +17,7 @@ public class RegisterServiceImpl implements RegisterService{
 	
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public boolean insertReg(UserVO userVO) {
+	public boolean insertReg(UserVO userVO) throws Exception {
 		try {
 			registerDao.insertReg(userVO);
 		}catch(Exception e) {
@@ -28,7 +28,7 @@ public class RegisterServiceImpl implements RegisterService{
 	}
 	
 	@Override
-	public int selectReg(UserVO userVO) {
+	public int selectReg(UserVO userVO)throws Exception {
 		
 		return registerDao.selectReg(userVO);
 	}

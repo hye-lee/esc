@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pro.esc.login.service.LoginService;
+import com.pro.esc.register.service.SHA256;
 
 @Controller
 public class LoginContoller {
@@ -26,10 +27,10 @@ public class LoginContoller {
 		
 		System.out.println(userID);
         System.out.println(userPw);
-       
+        String encryPw=SHA256.encrypt(userPw);
         UserVO userVO=new UserVO();
         userVO.setUserID(userID);
-        userVO.setUserPw(userPw);
+        userVO.setUserPw(encryPw);
         
         if(loginService.login(userVO)==1)
         {

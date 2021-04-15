@@ -13,7 +13,7 @@ public class LoginServiceImpl implements LoginService{
 	private LoginDao loginDao;
 	
 	@Override
-	public int login(UserVO userVO) {
+	public int login(UserVO userVO) throws Exception {
 		return loginDao.login(userVO);
 	}
 

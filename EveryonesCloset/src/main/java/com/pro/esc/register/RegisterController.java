@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,17 +37,23 @@ public class RegisterController {
 	
 	@RequestMapping(value="/register")
 	@ResponseBody
-	public String registerUser(HttpServletRequest req,
-							HttpSession session) throws Exception {
+	public String registerUser(HttpServletRequest req, HttpSession session) throws Exception {
 		String userID=req.getParameter("userID");
 		String userPw=req.getParameter("userPw");
+		String userAddr=req.getParameter("userAddr");
 		String encryPw=SHA256.encrypt(userPw); //비밀번호 암호화
 		System.out.println("encryPw: "+encryPw);
+		
+
 		UserVO userVO=new UserVO();
 		userVO.setUserID(req.getParameter("userID"));
 		userVO.setUserEmail(req.getParameter("userEmail"));
 		userVO.setUserName(req.getParameter("userName"));
 		userVO.setUserPw(encryPw);
+		userVO.setUserAddr(userAddr);
+		userVO.setUserExAddr(req.getParameter("userExAddr"));
+		userVO.setUserPostCode(req.getParameter("userPostCode"));
+		
 		System.out.println(userID);
 
 		if(registerService.insertReg(userVO)) {
@@ -75,7 +81,7 @@ public class RegisterController {
 		
 		@RequestMapping(value="/checkID", method=RequestMethod.POST ,produces = "application/text; charset=utf8")
 		@ResponseBody
-		public String checkID(@RequestParam String userID) {
+		public String checkID(@RequestParam String userID) throws Exception {
 			UserVO userVO = new UserVO();
 			userVO.setUserID(userID);
 			System.out.println("userID: "+userID);
@@ -88,7 +94,7 @@ public class RegisterController {
 		
 		@RequestMapping(value="/checkEmail", method=RequestMethod.POST ,produces = "application/text; charset=utf8")
 		@ResponseBody
-		public String checkEmail(@RequestParam String userEmail) {
+		public String checkEmail(@RequestParam String userEmail) throws Exception {
 			UserVO userVO = new UserVO();
 			userVO.setUserID(userEmail);
 			if(registerService.selectReg(userVO)!=0)

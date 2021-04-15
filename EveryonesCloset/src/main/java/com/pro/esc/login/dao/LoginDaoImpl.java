@@ -13,7 +13,7 @@ public class LoginDaoImpl implements LoginDao{
 	private SqlSession sqlSession;
 	
 	@Override
-	public int login(UserVO userVO) {
+	public int login(UserVO userVO) throws Exception {
 		LoginDao mapper= sqlSession.getMapper(LoginDao.class);
 		return mapper.login(userVO);
 	}

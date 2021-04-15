@@ -13,14 +13,14 @@ public class RegisterDaoImpl implements RegisterDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int selectReg(UserVO userVO) {
+	public int selectReg(UserVO userVO) throws Exception{
 		RegisterDao mapper=sqlSession.getMapper(RegisterDao.class);
 		return mapper.selectReg(userVO);
 	}
 
 	
 	@Override
-	public boolean insertReg(UserVO userVO) {
+	public boolean insertReg(UserVO userVO) throws Exception{
 		RegisterDao mapper=sqlSession.getMapper(RegisterDao.class);
 		return mapper.insertReg(userVO);
 		
