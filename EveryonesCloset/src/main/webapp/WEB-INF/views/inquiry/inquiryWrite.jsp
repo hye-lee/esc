@@ -25,14 +25,38 @@
 	        ],
 	        lang: 'ko-KR' 
 	      });
+	   
+	  
+	   $("#btnSave").click(function () {
+		 	 var form=document.writeForm;
+		 	console.log("form: "+form);
+		 	 var userID=form.userIDs.value;
+	          var inquiryTitle=form.inquiryTitle.value;
+	          var inquiryContent=form.inquiryContent.value;
+	          console.log("userID: "+userID);
+	          console.log("inquiryTitle: "+inquiryTitle);
+	          console.log("inquiryContent: "+inquiryContent);
+	          if(inquiryTitle.trim()=='')
+	        	  {
+	        	  	alert("제목을 입력하세요");
+	        	  	return false;
+	        	  }
+	          if(userID.trim()==''){alert("로그인을 해주세요"); return false;}
+	          if(inquiryContent.trim()==''){alert("내용을 입력하세요"); return false;}
+	          form.submit();
+	      });
+	   
 	})
+	
+	
+
      
     </script>
     
     <style>
     .editor{
     	width: 50%;
-	margin: 0 auto;
+		margin: 0 auto;
     }
     
     .contextPadding{
@@ -52,26 +76,25 @@
     		<div class="card-title" style="margin-bottom:20px">
     			 <h3 class="text-themecolor contextPadding">질문작성</h3>
     		</div>
-    		<form id="writeForm" id="writeForm" method="post" nctype="multipart/form-data" action="boardSave">
+    		<form id="writeForm" name="writeForm" method="post" nctype="multipart/form-data" action="inquirySave">
     			<div class="form-inline contextPadding">
     				<h4>작성자</h4>
-    				 <input type="text" id="boardTitle" name="boardTitle" class="form-control contextFont" value="<c:out value='${sessionScope.login}'/>" disabled="true">
-    				<input type="hidden" id="userID" name="userID" value="${sessionScope.login}"/>
+    				 <input type="text" id="userIDs" name="userIDs" class="form-control contextFont" value="<c:out value='${sessionScope.login}'/>" disabled="true">
+    				<input type="hidden" id="userID" name="userID" value="${sessionScope.login}">
     			</div>
     			
     			<div class="form-group contextPadding">
                         <h4>제목</h4> 
-                        <input type="text" id="boardTitle" name="boardTitle" class="form-control contextFont" placeholder="제목을 입력하세요.">
+                        <input type="text" id="inquiryTitle" name="inquiryTitle" class="form-control contextFont" placeholder="제목을 입력하세요.">
                 </div>
            
                 <div class="form-group">
                     	<h4>내용</h4>
-                        <textarea class="contextFont" id="summernote" name="summernote"></textarea>
+                        <textarea class="contextFont" id="summernote" name="inquiryContent"></textarea>
                 </div>
                 
                  <div class="card-body text-center">
-                        <input type="hidden" name="boardCate">
-                        <input type="hidden" name="boardSeq">
+                        <input type="hidden" id="inquirySeq" name="inquirySeq">
                         <button type="button" name="btnSave" id="btnSave"
                                 class="btn waves-effect waves-light btn-block btn-warning">저장</button>
                         <a href="#" onclick="history.back(-1)" data-role="button"

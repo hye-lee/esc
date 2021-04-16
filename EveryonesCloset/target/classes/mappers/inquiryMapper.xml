@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//maybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+        
+<mapper namespace="com.pro.esc.inquiry.dao.InquiryDao">
+	<insert id="insertInquiry" parameterType="com.pro.esc.inquiry.dao.InquiryVO">
+		INSERT INTO inquiry
+			(
+			<trim prefixOverrides=",">
+				<if test="userID!=null">
+					,userID
+				</if>
+				<if test="inquiryTitle!=null">
+					,inquiryTitle
+				</if>
+				<if test="inquiryContent!=null">
+					,inquiryContent
+				</if>
+				<if test="inquiryRegDate==null">
+					,inquiryRegDate
+				</if>
+				<if test="inquiryStat==null">
+					,inquiryStat
+				</if>
+				<if test="inquiryCnt==null">
+				,	inquiryCnt
+				</if>
+			
+			</trim>
+			
+			)
+			VALUES
+			(
+			<trim prefixOverrides=",">
+				<if test="userID != null">
+					,#{userID}
+				</if>
+				<if test="inquiryTitle!=null">
+					,#{inquiryTitle}
+				</if>
+				<if test="inquiryContent!=null">
+					,#{inquiryContent}
+				</if>
+				<if test="inquiryRegDate==null">
+					,now()
+				</if>
+				<if test="inquiryStat==null">
+					,'Y'
+				</if>
+				<if test="inquiryCnt==null">
+					,'0'
+				</if>
+
+			</trim>
+			)
+	</insert>
+	
+	<select id="selectInquiry"  parameterType="com.pro.esc.inquiry.dao.InquiryVO" resultType="com.pro.esc.inquiry.dao.InquiryVO">
+		SELECT inquirySeq, userID, inquiryTitle, inquiryContent, DATE_FORMAT(inquiryRegDate,'%Y-%m-%d') inquiryRegDate, inquiryCnt
+		
+		FROM inquiry
+		WHERE inquiryStat='Y'
+		ORDER BY
+        inquirySeq DESC <!-- 역순으로 출력 -->
+        limit #{startIndex}, #{cntPerPage}
+			
+	</select>
+	
+	<!-- 글 한개 읽기 -->
+	<select id="selectOneInquiry" parameterType="String" resultType="com.pro.esc.inquiry.dao.InquiryVO">
+		SELECT inquirySeq, inquiryTitle, userID, inquiryContent, DATE_FORMAT(inquiryRegDate,'%Y-%m-%d') inquiryRegDate
+         FROM inquiry
+         WHERE inquirySeq = #{inquirySeq}
+	</select>
+	
+	<!-- 조회수증가 -->
+	<update id="updateCnt" parameterType="String">
+		UPDATE inquiry
+		SET inquiryCnt = inquiryCnt+1
+		WHERE inquirySeq = #{inquirySeq}
+	<!-- 	<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="inquirySeq !=null">
+                AND inquirySeq = #{inquirySeq}
+            </if>
+		</trim> -->
+	</update>
+	
+	<select id="inquiryCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM inquiry
+		WHERE inquiryStat= 'Y'
+	</select>
+
+</mapper>

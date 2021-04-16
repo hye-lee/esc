@@ -1,5 +1,8 @@
 package com.pro.esc.inquiry.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,7 +16,6 @@ public class InquiryDaoImpl implements InquiryDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public void insertInquiry(InquiryVO inquiryVO) throws Exception {
 		// TODO Auto-generated method stub
 		
@@ -21,5 +23,38 @@ public class InquiryDaoImpl implements InquiryDao {
 		mapper.insertInquiry(inquiryVO);
 		
 	}
+
+	@Override
+	public List<InquiryVO> selectInquiry(InquiryVO inquiryVO) throws Exception {
+		// TODO Auto-generated method stub
+		InquiryDao mapper= sqlSession.getMapper(InquiryDao.class);
+		
+		return mapper.selectInquiry(inquiryVO);
+	}
+
+	@Override
+	public InquiryVO selectOneInquiry(String inquirySeq) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.getMapper(InquiryDao.class).selectOneInquiry(inquirySeq);
+	}
+
+	@Override
+	public void updateCnt(String inquirySeq) throws Exception {
+		
+		sqlSession.getMapper(InquiryDao.class).updateCnt(inquirySeq);
+		
+	}
+
+	@Override
+	public int inquiryCount() throws Exception {
+		
+		InquiryDao mapper= sqlSession.getMapper(InquiryDao.class);
+		return mapper.inquiryCount();
+	}
+	
+	
+	
+	
 
 }

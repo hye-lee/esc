@@ -8,5 +8,6 @@
 <configuration>
 	<typeAliases>		
 		<typeAlias alias="User" type="com.pro.esc.login.UserVO" />
+		<typeAlias alias="Inquiry" type="com.pro.esc.inquiry.dao.InquiryVO" />
 	</typeAliases>
 </configuration>
