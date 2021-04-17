@@ -24,7 +24,7 @@
                         <input type="hidden" name="inquirySeq" value="${info.inquirySeq}">
 
                         <c:if test="${info.userID == sessionScope.login}">
-                            <a href="writePage?inquirySeq=<c:out value="${info.inquirySeq}"/>" class="w3-button">수정</a>
+                            <a href="inquiryWrite?inquirySeq=<c:out value="${info.inquirySeq}"/>" class="w3-button">수정</a>
                             <a href="delete?inquirySeq=<c:out value="${info.inquirySeq}"/>" class="w3-button">삭제</a>
                             <%--<a href="#" id="delBtn" name="delBtn" class="del w3-button">삭제</a>--%>
                         </c:if>

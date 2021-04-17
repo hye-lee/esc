@@ -15,5 +15,8 @@ public interface InquiryService {
 	 
 	 int inquiryCount() throws Exception;
 
+	 void updateInquiry(InquiryVO inquiryVO)throws Exception;
+	 
+	 void deleteInquiry(String inquirySeq)throws Exception;
 	
 }

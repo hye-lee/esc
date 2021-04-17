@@ -63,8 +63,9 @@
 		
 		FROM inquiry
 		WHERE inquiryStat='Y'
-		ORDER BY
-        inquirySeq DESC <!-- 역순으로 출력 -->
+		ORDER BY inquirySeq DESC
+			
+		 <!-- 역순으로 출력 -->
         limit #{startIndex}, #{cntPerPage}
 			
 	</select>
@@ -88,10 +89,27 @@
 		</trim> -->
 	</update>
 	
+	<!-- 총 글 갯수 -->
 	<select id="inquiryCount" resultType="Integer">
 		SELECT COUNT(*)
 		FROM inquiry
 		WHERE inquiryStat= 'Y'
 	</select>
+	
+	<!-- 글 수정 -->
+	<update id="updateInquiry" parameterType="com.pro.esc.inquiry.dao.InquiryVO">
+        UPDATE inquiry
+        SET inquiryTitle = #{inquiryTitle},
+            inquiryContent = #{inquiryContent}
+        WHERE inquirySeq = #{inquirySeq} AND userID = #{userID}
+
+    </update>
+	
+	<!-- 글 삭제 플래그로만 안보이게 -->
+	<update id="deleteInquiry" parameterType="String">
+		UPDATE inquiry
+		SET inquiryStat='N'
+		WHERE inquirySeq=#{inquirySeq}
+	</update>
 
 </mapper>

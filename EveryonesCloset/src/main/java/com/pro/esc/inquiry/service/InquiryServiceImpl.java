@@ -36,7 +36,7 @@ public class InquiryServiceImpl implements InquiryService{
 		return inquiryDao.selectOneInquiry(inquirySeq);
 	}
 
-	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public void updateCnt(String inquirySeq) throws Exception {
 		// TODO Auto-generated method stub
 		inquiryDao.updateCnt(inquirySeq);
@@ -46,6 +46,22 @@ public class InquiryServiceImpl implements InquiryService{
 	public int inquiryCount() throws Exception{
 		
 		return inquiryDao.inquiryCount();
+	}
+
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public void updateInquiry(InquiryVO inquiryVO) throws Exception {
+		// TODO Auto-generated method stub
+		
+		 inquiryDao.updateInquiry(inquiryVO);
+		 
+	}
+
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public void deleteInquiry(String inquirySeq) throws Exception {
+		// TODO Auto-generated method stub
+		 inquiryDao.deleteInquiry(inquirySeq);
 	}
 
 

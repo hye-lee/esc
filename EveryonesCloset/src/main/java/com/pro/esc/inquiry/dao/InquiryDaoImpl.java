@@ -52,6 +52,20 @@ public class InquiryDaoImpl implements InquiryDao {
 		InquiryDao mapper= sqlSession.getMapper(InquiryDao.class);
 		return mapper.inquiryCount();
 	}
+
+	@Override
+	public void updateInquiry(InquiryVO inquiryVO) throws Exception {
+		// TODO Auto-generated method stub
+		InquiryDao mapper=sqlSession.getMapper(InquiryDao.class);
+		mapper.updateInquiry(inquiryVO);
+	}
+
+	@Override
+	public void deleteInquiry(String inquirySeq) throws Exception {
+		// TODO Auto-generated method stub
+		InquiryDao mapper=sqlSession.getMapper(InquiryDao.class);
+		mapper.deleteInquiry(inquirySeq);
+	}
 	
 	
 	

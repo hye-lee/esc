@@ -24,8 +24,14 @@
 	          ['view', ['fullscreen', 'codeview', 'help']]
 	        ],
 	        lang: 'ko-KR' 
+	     //   
 	      });
+	  
+	   var markupStr = '${info.inquiryContent}'
+	   console.log("markupStr: "+markupStr);
+	   $('#summernote').summernote('code', markupStr);
 	   
+	  // $('#summernote').summernote();
 	  
 	   $("#btnSave").click(function () {
 		 	 var form=document.writeForm;
@@ -79,22 +85,25 @@
     		<form id="writeForm" name="writeForm" method="post" nctype="multipart/form-data" action="inquirySave">
     			<div class="form-inline contextPadding">
     				<h4>작성자</h4>
-    				 <input type="text" id="userIDs" name="userIDs" class="form-control contextFont" value="<c:out value='${sessionScope.login}'/>" disabled="true">
-    				<input type="hidden" id="userID" name="userID" value="${sessionScope.login}">
+    						<input type="text" id="userIDs" name="userIDs" class="form-control contextFont" value="<c:out value='${sessionScope.login}'/>" disabled="true">
+    						<input type="hidden" id="userID" name="userID" value="${sessionScope.login}">
+    				
+    				    				
     			</div>
     			
     			<div class="form-group contextPadding">
                         <h4>제목</h4> 
-                        <input type="text" id="inquiryTitle" name="inquiryTitle" class="form-control contextFont" placeholder="제목을 입력하세요.">
+                        <input type="text" id="inquiryTitle" name="inquiryTitle" class="form-control contextFont" value="<c:out value="${info.inquiryTitle}"/>" placeholder="제목을 입력하세요.">
                 </div>
            
                 <div class="form-group">
                     	<h4>내용</h4>
                         <textarea class="contextFont" id="summernote" name="inquiryContent"></textarea>
+                        <input type="hidden" name="inquiryContent" value="<c:out value='${info.inquiryContent}'/>">
                 </div>
                 
                  <div class="card-body text-center">
-                        <input type="hidden" id="inquirySeq" name="inquirySeq">
+                        <input type="hidden" name="inquirySeq" value="<c:out value='${info.inquirySeq}'/>">
                         <button type="button" name="btnSave" id="btnSave"
                                 class="btn waves-effect waves-light btn-block btn-warning">저장</button>
                         <a href="#" onclick="history.back(-1)" data-role="button"
