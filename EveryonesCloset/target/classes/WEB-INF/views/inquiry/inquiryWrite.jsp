@@ -39,9 +39,11 @@
 		 	 var userID=form.userIDs.value;
 	          var inquiryTitle=form.inquiryTitle.value;
 	          var inquiryContent=form.inquiryContent.value;
+	          var inquiryParent=form.inquiryParent.value;
 	          console.log("userID: "+userID);
 	          console.log("inquiryTitle: "+inquiryTitle);
 	          console.log("inquiryContent: "+inquiryContent);
+	          console.log("info.inquiryParent: "+inquiryParent);
 	          if(inquiryTitle.trim()=='')
 	        	  {
 	        	  	alert("제목을 입력하세요");
@@ -77,12 +79,11 @@
   
     </style>
     
-    <div class="card editor">
-    	<div class="card-body">
-    		<div class="card-title" style="margin-bottom:20px">
+    <div class="editor">
+    		<div style="margin-bottom:20px">
     			 <h3 class="text-themecolor contextPadding">질문작성</h3>
     		</div>
-    		<form id="writeForm" name="writeForm" method="post" nctype="multipart/form-data" action="inquirySave">
+    		<form id="writeForm" name="writeForm" method="post" action="inquirySave">
     			<div class="form-inline contextPadding">
     				<h4>작성자</h4>
     						<input type="text" id="userIDs" name="userIDs" class="form-control contextFont" value="<c:out value='${sessionScope.login}'/>" disabled="true">
@@ -99,17 +100,21 @@
                 <div class="form-group">
                     	<h4>내용</h4>
                         <textarea class="contextFont" id="summernote" name="inquiryContent"></textarea>
-                        <input type="hidden" name="inquiryContent" value="<c:out value='${info.inquiryContent}'/>">
+                      <!--  <input type="hidden" name="inquiryContent" value="<c:out value='${info.inquiryContent}'/>">
+                       --> 
                 </div>
                 
-                 <div class="card-body text-center">
+                 <div class="text-center">
                         <input type="hidden" name="inquirySeq" value="<c:out value='${info.inquirySeq}'/>">
+                        <input type="hidden" id="inquiryParent" name="inquiryParent" value="<c:out value='${info.inquiryParent}'/>">
+                        <input type="hidden" id="inquirySeqOrd" name="inquirySeqOrd" value="<c:out value='${info.inquirySeqOrd}'/>">
+                        <input type="hidden" id="inquiryIndent" name="inquiryIndent" value="<c:out value='${info.inquiryIndent}'/>">
                         <button type="button" name="btnSave" id="btnSave"
                                 class="btn waves-effect waves-light btn-block btn-warning">저장</button>
                         <a href="#" onclick="history.back(-1)" data-role="button"
                            class="btn waves-effect waves-light btn-block btn-warning">취소</a>
                     </div>
     		</form>	 
-    	</div>
+    	
 </div>
 

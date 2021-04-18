@@ -1,5 +1,6 @@
 package com.pro.esc.inquiry.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -65,6 +66,20 @@ public class InquiryDaoImpl implements InquiryDao {
 		// TODO Auto-generated method stub
 		InquiryDao mapper=sqlSession.getMapper(InquiryDao.class);
 		mapper.deleteInquiry(inquirySeq);
+	}
+
+	@Override
+	public void insertInqReply(InquiryVO inquiryVO) throws Exception {
+		// TODO Auto-generated method stub
+		InquiryDao mapper=sqlSession.getMapper(InquiryDao.class);
+		mapper.insertInqReply(inquiryVO);
+	}
+
+	@Override
+	public InquiryVO selectRepInfo(HashMap<String,String> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.getMapper(InquiryDao.class).selectRepInfo(map);
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.pro.esc.inquiry.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,18 @@ public class InquiryServiceImpl implements InquiryService{
 	public void deleteInquiry(String inquirySeq) throws Exception {
 		// TODO Auto-generated method stub
 		 inquiryDao.deleteInquiry(inquirySeq);
+	}
+
+	@Override
+	public void insertInqReply(InquiryVO inquiryVO) throws Exception {
+		// TODO Auto-generated method stub
+		inquiryDao.insertInqReply(inquiryVO);
+	}
+
+	@Override
+	public InquiryVO selectRepInfo(HashMap<String,String> map) throws Exception {
+		// TODO Auto-generated method stub
+		return inquiryDao.selectRepInfo(map);
 	}
 
 

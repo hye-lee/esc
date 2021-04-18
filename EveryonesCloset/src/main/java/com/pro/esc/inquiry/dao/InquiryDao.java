@@ -1,5 +1,6 @@
 package com.pro.esc.inquiry.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface InquiryDao {
@@ -17,4 +18,8 @@ public interface InquiryDao {
 	
 	void deleteInquiry(String inquirySeq) throws Exception;
 	
+	void insertInqReply(InquiryVO inquiryVO) throws Exception;
+	
+	InquiryVO selectRepInfo(HashMap<String,String> map) throws Exception;
+
 }

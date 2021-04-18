@@ -1,5 +1,6 @@
 package com.pro.esc.inquiry.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.pro.esc.inquiry.dao.InquiryVO;
@@ -18,5 +19,9 @@ public interface InquiryService {
 	 void updateInquiry(InquiryVO inquiryVO)throws Exception;
 	 
 	 void deleteInquiry(String inquirySeq)throws Exception;
+	 
+	 void insertInqReply(InquiryVO inquiryVO) throws Exception;
+	 
+	 InquiryVO selectRepInfo(HashMap<String,String> map) throws Exception;
 	
 }

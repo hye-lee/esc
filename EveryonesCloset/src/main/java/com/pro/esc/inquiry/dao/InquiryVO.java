@@ -5,38 +5,27 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class InquiryVO {
-	 	private String inquirySeq;                        // 글 번호
+	 	private int inquirySeq;                        // 글 번호
 	 	private String userID;                          // 작성자
 	    private String inquiryCnt;                        // 조회수
 	    private String inquiryTitle;                      // 글 제목
 	    private String inquiryContent;                    // 내용
 	    private String inquiryStat;                    // 삭제 플래그
 	    private String inquiryCate;                       // 게시판 종류
-	    private String inquiryParent;					//부모글
-	    private String inquiryDepth;					//깊이
+	    private int inquiryParent;					//부모글
 	    private String inquiryRegDate;                    // 작성일
 	    private String inquiryUpDate;					//수정일
 	    private List<MultipartFile> inquiryFile;       // 업로드 파일
-		
+	   	
 	    private int startIndex;
 	    private int cntPerPage;
 	    
-	    public int getStartIndex() {
-			return startIndex;
-		}
-		public void setStartIndex(int startIndex) {
-			this.startIndex = startIndex;
-		}
-		public int getCntPerPage() {
-			return cntPerPage;
-		}
-		public void setCntPerPage(int cntPerPage) {
-			this.cntPerPage = cntPerPage;
-		}
-		public String getInquirySeq() {
+	    private int inquirySeqOrd;
+	    private int inquiryIndent;
+		public int getInquirySeq() {
 			return inquirySeq;
 		}
-		public void setInquirySeq(String inquirySeq) {
+		public void setInquirySeq(int inquirySeq) {
 			this.inquirySeq = inquirySeq;
 		}
 		public String getUserID() {
@@ -75,17 +64,11 @@ public class InquiryVO {
 		public void setInquiryCate(String inquiryCate) {
 			this.inquiryCate = inquiryCate;
 		}
-		public String getInquiryParent() {
+		public int getInquiryParent() {
 			return inquiryParent;
 		}
-		public void setInquiryParent(String inquiryParent) {
+		public void setInquiryParent(int inquiryParent) {
 			this.inquiryParent = inquiryParent;
-		}
-		public String getInquiryDepth() {
-			return inquiryDepth;
-		}
-		public void setInquiryDepth(String inquiryDepth) {
-			this.inquiryDepth = inquiryDepth;
 		}
 		public String getInquiryRegDate() {
 			return inquiryRegDate;
@@ -105,8 +88,30 @@ public class InquiryVO {
 		public void setInquiryFile(List<MultipartFile> inquiryFile) {
 			this.inquiryFile = inquiryFile;
 		}
-		
+		public int getStartIndex() {
+			return startIndex;
+		}
+		public void setStartIndex(int startIndex) {
+			this.startIndex = startIndex;
+		}
+		public int getCntPerPage() {
+			return cntPerPage;
+		}
+		public void setCntPerPage(int cntPerPage) {
+			this.cntPerPage = cntPerPage;
+		}
+		public int getInquirySeqOrd() {
+			return inquirySeqOrd;
+		}
+		public void setInquirySeqOrd(int inquirySeqOrd) {
+			this.inquirySeqOrd = inquirySeqOrd;
+		}
+		public int getInquiryIndent() {
+			return inquiryIndent;
+		}
+		public void setInquiryIndent(int inquiryIndent) {
+			this.inquiryIndent = inquiryIndent;
+		}
 	    
-	    
-	    
+	   	    
 }
