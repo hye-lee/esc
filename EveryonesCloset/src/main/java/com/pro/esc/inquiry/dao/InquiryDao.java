@@ -4,24 +4,24 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface InquiryDao {
-	void insertInquiry(InquiryVO inquiryVO) throws Exception;
+	void insertInquiry(InquiryDTO inquiryDTO) throws Exception;
 	
-	List<InquiryVO> selectInquiry(InquiryVO inquiryVO) throws Exception;
+	List<InquiryDTO> selectInquiry(InquiryDTO inquiryDTO) throws Exception;
 	
-	InquiryVO selectOneInquiry(String inquirySeq) throws Exception;
+	InquiryDTO selectOneInquiry(String inquirySeq) throws Exception;
 	
 	void updateCnt(String inquirySeq) throws Exception;
 	
 	int inquiryCount() throws Exception;
 	
-	void updateInquiry(InquiryVO inquiryVO) throws Exception;
+	void updateInquiry(InquiryDTO inquiryDTO) throws Exception;
 	
 	void deleteInquiry(String inquirySeq) throws Exception;
 	
-	void insertInqReply(InquiryVO inquiryVO) throws Exception;
+	void insertInqReply(InquiryDTO inquiryDTO) throws Exception;
 	
-	InquiryVO selectRepInfo(HashMap<String,String> map) throws Exception;
+	InquiryDTO selectRepInfo(HashMap<String,String> map) throws Exception;
 	
-	void updateInqReSeq(InquiryVO inquiryVO) throws Exception;
+	void updateInqReSeq(InquiryDTO inquiryDTO) throws Exception;
 
 }

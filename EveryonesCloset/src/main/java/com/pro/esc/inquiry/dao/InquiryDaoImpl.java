@@ -17,24 +17,24 @@ public class InquiryDaoImpl implements InquiryDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public void insertInquiry(InquiryVO inquiryVO) throws Exception {
+	public void insertInquiry(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
 		
 		InquiryDao mapper= sqlSession.getMapper(InquiryDao.class);
-		mapper.insertInquiry(inquiryVO);
+		mapper.insertInquiry(inquiryDTO);
 		
 	}
 
 	@Override
-	public List<InquiryVO> selectInquiry(InquiryVO inquiryVO) throws Exception {
+	public List<InquiryDTO> selectInquiry(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
 		InquiryDao mapper= sqlSession.getMapper(InquiryDao.class);
 		
-		return mapper.selectInquiry(inquiryVO);
+		return mapper.selectInquiry(inquiryDTO);
 	}
 
 	@Override
-	public InquiryVO selectOneInquiry(String inquirySeq) throws Exception {
+	public InquiryDTO selectOneInquiry(String inquirySeq) throws Exception {
 		// TODO Auto-generated method stub
 		
 		return sqlSession.getMapper(InquiryDao.class).selectOneInquiry(inquirySeq);
@@ -55,10 +55,10 @@ public class InquiryDaoImpl implements InquiryDao {
 	}
 
 	@Override
-	public void updateInquiry(InquiryVO inquiryVO) throws Exception {
+	public void updateInquiry(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
 		InquiryDao mapper=sqlSession.getMapper(InquiryDao.class);
-		mapper.updateInquiry(inquiryVO);
+		mapper.updateInquiry(inquiryDTO);
 	}
 
 	@Override
@@ -69,23 +69,23 @@ public class InquiryDaoImpl implements InquiryDao {
 	}
 
 	@Override
-	public void insertInqReply(InquiryVO inquiryVO) throws Exception {
+	public void insertInqReply(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
 		InquiryDao mapper=sqlSession.getMapper(InquiryDao.class);
-		mapper.insertInqReply(inquiryVO);
+		mapper.insertInqReply(inquiryDTO);
 	}
 
 	@Override
-	public InquiryVO selectRepInfo(HashMap<String,String> map) throws Exception {
+	public InquiryDTO selectRepInfo(HashMap<String,String> map) throws Exception {
 		// TODO Auto-generated method stub
 		
 		return sqlSession.getMapper(InquiryDao.class).selectRepInfo(map);
 	}
 
 	@Override
-	public void updateInqReSeq(InquiryVO inquiryVO) throws Exception {
+	public void updateInqReSeq(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.getMapper(InquiryDao.class).updateInqReSeq(inquiryVO);
+		sqlSession.getMapper(InquiryDao.class).updateInqReSeq(inquiryDTO);
 	}
 	
 	

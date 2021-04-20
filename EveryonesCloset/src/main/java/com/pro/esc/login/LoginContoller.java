@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pro.esc.login.dao.UserDTO;
 import com.pro.esc.login.service.LoginService;
 import com.pro.esc.register.service.SHA256;
 
@@ -28,13 +29,13 @@ public class LoginContoller {
 		System.out.println(userID);
         System.out.println(userPw);
         String encryPw=SHA256.encrypt(userPw);
-        UserVO userVO=new UserVO();
-        userVO.setUserID(userID);
-        userVO.setUserPw(encryPw);
+        UserDTO userDTO=new UserDTO();
+        userDTO.setUserID(userID);
+        userDTO.setUserPw(encryPw);
         
-        if(loginService.login(userVO)==1)
+        if(loginService.login(userDTO)==1)
         {
-        	System.out.println(loginService.login(userVO));
+        	System.out.println(loginService.login(userDTO));
         	session.setAttribute("login", userID);
         	return "success";
         }

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pro.esc.inquiry.dao.InquiryDTO;
 import com.pro.esc.inquiry.dao.InquiryDao;
-import com.pro.esc.inquiry.dao.InquiryVO;
 
 @Service
 public class InquiryServiceImpl implements InquiryService{
@@ -19,20 +19,20 @@ public class InquiryServiceImpl implements InquiryService{
 	
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public void insertInquiry(InquiryVO inquiryVO) throws Exception {
+	public void insertInquiry(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
-		inquiryDao.insertInquiry(inquiryVO);
+		inquiryDao.insertInquiry(inquiryDTO);
 	}
 
 	@Override
-	public List<InquiryVO> selectInquiry(InquiryVO inquiryVO) throws Exception {
+	public List<InquiryDTO> selectInquiry(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return inquiryDao.selectInquiry(inquiryVO);
+		return inquiryDao.selectInquiry(inquiryDTO);
 	}
 
 	
-	public InquiryVO selectOneInquiry(String inquirySeq) throws Exception {
+	public InquiryDTO selectOneInquiry(String inquirySeq) throws Exception {
 		// TODO Auto-generated method stub
 		return inquiryDao.selectOneInquiry(inquirySeq);
 	}
@@ -51,10 +51,10 @@ public class InquiryServiceImpl implements InquiryService{
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public void updateInquiry(InquiryVO inquiryVO) throws Exception {
+	public void updateInquiry(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
 		
-		 inquiryDao.updateInquiry(inquiryVO);
+		 inquiryDao.updateInquiry(inquiryDTO);
 		 
 	}
 
@@ -66,22 +66,23 @@ public class InquiryServiceImpl implements InquiryService{
 	}
 
 	@Override
-	public void insertInqReply(InquiryVO inquiryVO) throws Exception {
+	public void insertInqReply(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
 		
-		inquiryDao.insertInqReply(inquiryVO);
+		inquiryDao.insertInqReply(inquiryDTO);
 	}
 
 	@Override
-	public InquiryVO selectRepInfo(HashMap<String,String> map) throws Exception {
+	public InquiryDTO selectRepInfo(HashMap<String,String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return inquiryDao.selectRepInfo(map);
 	}
 
 	@Override
-	public void updateInqReSeq(InquiryVO inquiryVO) throws Exception {
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public void updateInqReSeq(InquiryDTO inquiryDTO) throws Exception {
 		// TODO Auto-generated method stub
-		inquiryDao.updateInqReSeq(inquiryVO);
+		inquiryDao.updateInqReSeq(inquiryDTO);
 	}
 
 

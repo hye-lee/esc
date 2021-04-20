@@ -318,9 +318,9 @@
 		
 		$('#registerForm input').each(function(){
 			if(detail){
-				if($(detail).val()==''||$(detail).val()==null){
+				//if($(detail).val()==''||$(detail).val()==null){
 					inputCheck=true;
-				}
+				
 			}
 			else{
 			if($(this).val()==""||$(this).val()==null){

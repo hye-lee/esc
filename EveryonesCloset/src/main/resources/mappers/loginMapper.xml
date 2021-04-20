@@ -5,7 +5,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="com.pro.esc.login.dao.LoginDao">
-	<select id="login" parameterType="com.pro.esc.login.UserVO" resultType="int">
+	<select id="login" parameterType="com.pro.esc.login.dao.UserDTO" resultType="int">
 		SELECT COUNT(*)
 		FROM user
 		<trim prefix="WHERE" prefixOverrides="AND">

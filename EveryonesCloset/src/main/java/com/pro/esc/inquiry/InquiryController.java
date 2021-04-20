@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.pro.esc.inquiry.dao.InquiryVO;
+import com.pro.esc.inquiry.dao.InquiryDTO;
 import com.pro.esc.inquiry.dao.PageDto;
 import com.pro.esc.inquiry.service.InquiryService;
 
@@ -26,20 +26,17 @@ public class InquiryController {
 	
 	//페이징+글목록
 	@RequestMapping(value="/inquiry")
-	public String inquiry(@ModelAttribute("inquiryVO") InquiryVO inquiryVO,
+	public String inquiry(@ModelAttribute("inquiryDTO") InquiryDTO inquiryDTO,
 			@RequestParam(defaultValue="1") int page, Model model,HttpSession session) throws Exception {
 		
-		List<InquiryVO> listView=inquiryService.selectInquiry(inquiryVO);
-		
-		model.addAttribute("listView",listView);
 		String checkSession=(String) session.getAttribute("login");
 		
 		int count=inquiryService.inquiryCount();
 		PageDto pageDto=new PageDto(count,page);
-		inquiryVO.setStartIndex(pageDto.getStartInx());
-		inquiryVO.setCntPerPage(pageDto.getRowCount());
+		inquiryDTO.setStartIndex(pageDto.getStartInx());
+		inquiryDTO.setCntPerPage(pageDto.getRowCount());
 		
-		List<InquiryVO> list=inquiryService.selectInquiry(inquiryVO);
+		List<InquiryDTO> list=inquiryService.selectInquiry(inquiryDTO);
 		model.addAttribute("list",list);
 		model.addAttribute("count", count);
 		model.addAttribute("pageDto", pageDto);
@@ -66,7 +63,7 @@ public class InquiryController {
 		
 		String inquirySeq=req.getParameter("inquirySeq");
 		
-		InquiryVO info=new InquiryVO();
+		InquiryDTO info=new InquiryDTO();
 		info= inquiryService.selectOneInquiry(inquirySeq);
 		modelMap.addAttribute("info", info);
 		model.addAttribute("plag","modify");
@@ -83,7 +80,7 @@ public class InquiryController {
 		HashMap<String,String> map=new HashMap<String,String>();
 		map.put("inquiryParent",inquiryParent);
 		map.put("inquirySeq",inquirySeq);
-		InquiryVO info=new InquiryVO();
+		InquiryDTO info=new InquiryDTO();
 		info= inquiryService.selectRepInfo(map);
 		model.addAttribute("plag","reply");
 		modelMap.addAttribute("info",info);
@@ -98,19 +95,19 @@ public class InquiryController {
 		String inquirySeqOrd=req.getParameter("inquirySeqOrd");
 		String inquiryIndent=req.getParameter("inquiryIndent");
 
-		InquiryVO vo=new InquiryVO();
+		InquiryDTO dto=new InquiryDTO();
 		
-		vo.setInquiryParent(Integer.parseInt(inquiryParent));
-		vo.setInquirySeqOrd(Integer.parseInt(inquirySeqOrd));
-		inquiryService.updateInqReSeq(vo);
+		dto.setInquiryParent(Integer.parseInt(inquiryParent));
+		dto.setInquirySeqOrd(Integer.parseInt(inquirySeqOrd));
+		inquiryService.updateInqReSeq(dto);
 		
-		vo.setInquiryTitle(req.getParameter("inquiryTitle"));
-		vo.setInquiryContent(req.getParameter("inquiryContent"));
-		vo.setUserID(req.getParameter("userID"));
+		dto.setInquiryTitle(req.getParameter("inquiryTitle"));
+		dto.setInquiryContent(req.getParameter("inquiryContent"));
+		dto.setUserID(req.getParameter("userID"));
 		
-		vo.setInquiryIndent(Integer.parseInt(inquiryIndent));
+		dto.setInquiryIndent(Integer.parseInt(inquiryIndent));
 		
-		inquiryService.insertInqReply(vo);
+		inquiryService.insertInqReply(dto);
 		
 		
 		return "redirect:/inquiry";
@@ -129,19 +126,19 @@ public class InquiryController {
 		String inquiryIndent=req.getParameter("inquiryIndent");
 		System.out.println("저장inquirySeq"+inquirySeq);
 
-		InquiryVO inquiryVO=new InquiryVO();
-		inquiryVO.setInquiryTitle(inquiryTitle);
-		inquiryVO.setInquiryContent(inquiryContent);
-		inquiryVO.setUserID(userID);
+		InquiryDTO inquiryDTO=new InquiryDTO();
+		inquiryDTO.setInquiryTitle(inquiryTitle);
+		inquiryDTO.setInquiryContent(inquiryContent);
+		inquiryDTO.setUserID(userID);
 
 		
 		if(inquirySeq==""||"".equals(inquirySeq)||"0".equals(inquirySeq))
 		{
-				inquiryService.insertInquiry(inquiryVO);
+				inquiryService.insertInquiry(inquiryDTO);
 			
 		}else {
-			inquiryVO.setInquirySeq(Integer.parseInt(inquirySeq));
-			inquiryService.updateInquiry(inquiryVO);
+			inquiryDTO.setInquirySeq(Integer.parseInt(inquirySeq));
+			inquiryService.updateInquiry(inquiryDTO);
 		}
 			
 		return "redirect:/inquiry";
@@ -158,7 +155,7 @@ public class InquiryController {
 		
 		inquiryService.updateCnt(inquirySeq); //조회수 증가
 
-		InquiryVO info=inquiryService.selectOneInquiry(inquirySeq); //글 select
+		InquiryDTO info=inquiryService.selectOneInquiry(inquirySeq); //글 select
 		
 		modelMap.addAttribute("info",info);
 		

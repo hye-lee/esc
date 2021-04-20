@@ -1,11 +1,11 @@
 package com.pro.esc.register.service;
 
-import com.pro.esc.login.UserVO;
+import com.pro.esc.login.dao.UserDTO;
 
 public interface RegisterService {
 	
-	boolean insertReg(UserVO userVO) throws Exception;
+	boolean insertReg(UserDTO userDTO) throws Exception;
 
-	int selectReg(UserVO userVO) throws Exception;
+	int selectReg(UserDTO userDTO) throws Exception;
 
 }

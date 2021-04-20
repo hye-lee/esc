@@ -5,7 +5,7 @@
 		
 
 <mapper namespace="com.pro.esc.register.dao.RegisterDao">
-		<insert id="insertReg" parameterType="com.pro.esc.login.UserVO">
+		<insert id="insertReg" parameterType="com.pro.esc.login.dao.UserDTO">
 			INSERT INTO user
 			(
 			<trim prefixOverrides=",">
@@ -75,7 +75,7 @@
 		
 		</insert>
 		
-		<select id="selectReg" parameterType="com.pro.esc.login.UserVO" resultType="int">
+		<select id="selectReg" parameterType="com.pro.esc.login.dao.UserDTO" resultType="int">
 		 SELECT COUNT(*)
 		 FROM user
 		 <trim prefix="WHERE" prefixOverrides="AND |OR ">

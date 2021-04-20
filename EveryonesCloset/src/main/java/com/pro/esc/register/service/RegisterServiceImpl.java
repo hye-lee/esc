@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pro.esc.login.UserVO;
+import com.pro.esc.login.dao.UserDTO;
 import com.pro.esc.register.dao.RegisterDao;
 
 @Service
@@ -17,9 +17,9 @@ public class RegisterServiceImpl implements RegisterService{
 	
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public boolean insertReg(UserVO userVO) throws Exception {
+	public boolean insertReg(UserDTO userDTO) throws Exception {
 		try {
-			registerDao.insertReg(userVO);
+			registerDao.insertReg(userDTO);
 		}catch(Exception e) {
 			System.out.println(e);
 			return false;
@@ -28,9 +28,9 @@ public class RegisterServiceImpl implements RegisterService{
 	}
 	
 	@Override
-	public int selectReg(UserVO userVO)throws Exception {
+	public int selectReg(UserDTO userDTO)throws Exception {
 		
-		return registerDao.selectReg(userVO);
+		return registerDao.selectReg(userDTO);
 	}
 
 }

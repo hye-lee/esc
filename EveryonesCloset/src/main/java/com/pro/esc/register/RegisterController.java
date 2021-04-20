@@ -8,13 +8,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pro.esc.login.UserVO;
+import com.pro.esc.login.dao.UserDTO;
 import com.pro.esc.register.service.RegisterService;
 import com.pro.esc.register.service.SHA256;
 
@@ -45,18 +44,18 @@ public class RegisterController {
 		System.out.println("encryPw: "+encryPw);
 		
 
-		UserVO userVO=new UserVO();
-		userVO.setUserID(req.getParameter("userID"));
-		userVO.setUserEmail(req.getParameter("userEmail"));
-		userVO.setUserName(req.getParameter("userName"));
-		userVO.setUserPw(encryPw);
-		userVO.setUserAddr(userAddr);
-		userVO.setUserExAddr(req.getParameter("userExAddr"));
-		userVO.setUserPostCode(req.getParameter("userPostCode"));
+		UserDTO userDTO=new UserDTO();
+		userDTO.setUserID(req.getParameter("userID"));
+		userDTO.setUserEmail(req.getParameter("userEmail"));
+		userDTO.setUserName(req.getParameter("userName"));
+		userDTO.setUserPw(encryPw);
+		userDTO.setUserAddr(userAddr);
+		userDTO.setUserExAddr(req.getParameter("userExAddr"));
+		userDTO.setUserPostCode(req.getParameter("userPostCode"));
 		
 		System.out.println(userID);
 
-		if(registerService.insertReg(userVO)) {
+		if(registerService.insertReg(userDTO)) {
 			session.setAttribute("login", userID);
 			
 			return "/registerCom";
@@ -82,10 +81,10 @@ public class RegisterController {
 		@RequestMapping(value="/checkID", method=RequestMethod.POST ,produces = "application/text; charset=utf8")
 		@ResponseBody
 		public String checkID(@RequestParam String userID) throws Exception {
-			UserVO userVO = new UserVO();
-			userVO.setUserID(userID);
+			UserDTO userDTO = new UserDTO();
+			userDTO.setUserID(userID);
 			System.out.println("userID: "+userID);
-			if(registerService.selectReg(userVO)!=0)
+			if(registerService.selectReg(userDTO)!=0)
 			{
 				return "이미 사용중인 아이디입니다.";
 			}
@@ -95,9 +94,9 @@ public class RegisterController {
 		@RequestMapping(value="/checkEmail", method=RequestMethod.POST ,produces = "application/text; charset=utf8")
 		@ResponseBody
 		public String checkEmail(@RequestParam String userEmail) throws Exception {
-			UserVO userVO = new UserVO();
-			userVO.setUserID(userEmail);
-			if(registerService.selectReg(userVO)!=0)
+			UserDTO userDTO = new UserDTO();
+			userDTO.setUserID(userEmail);
+			if(registerService.selectReg(userDTO)!=0)
 			{
 				return "이미 사용중인 이메일입니다.";
 			}

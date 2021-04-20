@@ -4,7 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.pro.esc.login.UserVO;
+import com.pro.esc.login.dao.UserDTO;
+
 
 @Repository
 public class RegisterDaoImpl implements RegisterDao {
@@ -13,16 +14,16 @@ public class RegisterDaoImpl implements RegisterDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int selectReg(UserVO userVO) throws Exception{
+	public int selectReg(UserDTO userDTO) throws Exception{
 		RegisterDao mapper=sqlSession.getMapper(RegisterDao.class);
-		return mapper.selectReg(userVO);
+		return mapper.selectReg(userDTO);
 	}
 
 	
 	@Override
-	public boolean insertReg(UserVO userVO) throws Exception{
+	public boolean insertReg(UserDTO userDTO) throws Exception{
 		RegisterDao mapper=sqlSession.getMapper(RegisterDao.class);
-		return mapper.insertReg(userVO);
+		return mapper.insertReg(userDTO);
 		
 	}
 	

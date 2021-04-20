@@ -61,6 +61,15 @@
   border: 1px solid #dee2e6;
 }
 
+.search_width{
+    width: 60%;
+	margin: 0 auto;
+	font-size: 1em;
+	padding-bottom: 5%;
+	padding-top:3%;
+
+}
+
 
 
 </style>
@@ -109,6 +118,23 @@
                        
 </table>
 
+	<form class="form-inline search_width" method="post">
+		<div class="col-md-3"  style="padding-right:1%;">
+			<select class="form-control" style="width:100%"name="inqSearch" id="inqSearch">
+				<option value="titleWriter" <c:if test="${condition eq 'titlename' }">selected</c:if>>제목+작성자</option>
+				<option value="title" <c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
+				<option value="writer" <c:if test="${condition eq 'writer' }">selected</c:if>>작성자</option>
+			</select>
+		</div>
+		<div class="col-md-6" style="padding:0;">
+		<input type="text"  class="form-control" name="keyword" id="keyword" placeholder="검색어를 입력하세요 Please enter keyword" value="${keyword}"/>
+		</div>
+		<div class="col-md-3"  style="padding-left:1%;"><button type="button" class="btn btn-success">검색 Search</button></div>
+
+	</form>
+	
+	
+
 
 	<nav aria-label="Page navigation example" style="padding-top:3%;">
 	  <ul class="pagination" style="justify-content:center;">
@@ -147,6 +173,8 @@
 		    </li>
 	    </ul>
 	</nav>
+
+	
 </div>
 
 

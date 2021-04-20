@@ -6,7 +6,7 @@
         
         
 <mapper namespace="com.pro.esc.inquiry.dao.InquiryDao">
-	<insert id="insertInquiry" parameterType="com.pro.esc.inquiry.dao.InquiryVO">
+	<insert id="insertInquiry" parameterType="com.pro.esc.inquiry.dao.InquiryDTO">
 		<selectKey keyProperty="inquiryParent"  resultType="int" order="BEFORE">
 			(select *from (select IFNULL(max(inquirySeq),0)+1 from inquiry) A)
 		</selectKey>
@@ -81,7 +81,7 @@
 	</insert>
 	
 	<!-- 답글등록 -->
-	<insert id="insertInqReply" parameterType="com.pro.esc.inquiry.dao.InquiryVO">
+	<insert id="insertInqReply" parameterType="com.pro.esc.inquiry.dao.InquiryDTO">
 		INSERT INTO inquiry
 			(
 			<trim prefixOverrides=",">
@@ -152,7 +152,7 @@
 	</insert>
 	
 	<!-- 글 순서수정 -->
-	<update id="updateInqReSeq" parameterType="com.pro.esc.inquiry.dao.InquiryVO">
+	<update id="updateInqReSeq" parameterType="com.pro.esc.inquiry.dao.InquiryDTO">
     
 	    UPDATE inquiry
 	       SET inquirySeqOrd = inquirySeqOrd + 1
@@ -162,27 +162,26 @@
 </update>
 	
 	
-	<select id="selectInquiry"  parameterType="com.pro.esc.inquiry.dao.InquiryVO" resultType="com.pro.esc.inquiry.dao.InquiryVO">
+	<select id="selectInquiry"  parameterType="com.pro.esc.inquiry.dao.InquiryDTO" resultType="com.pro.esc.inquiry.dao.InquiryDTO">
 		SELECT inquirySeq, userID, inquiryTitle, inquiryContent, DATE_FORMAT(inquiryRegDate,'%Y-%m-%d') inquiryRegDate, inquiryCnt, inquiryParent, inquirySeqOrd, inquiryIndent
 		
 		FROM inquiry
 		WHERE inquiryStat='Y'
-		ORDER BY inquiryParent DESC, inquirySeqOrd ASC
-			
 		 <!-- 역순으로 출력 -->
+		ORDER BY inquiryParent DESC, inquirySeqOrd ASC
         limit #{startIndex}, #{cntPerPage}
 			
 	</select>
 	
 	<!-- 글 한개 읽기 -->
-	<select id="selectOneInquiry" parameterType="String" resultType="com.pro.esc.inquiry.dao.InquiryVO">
+	<select id="selectOneInquiry" parameterType="String" resultType="com.pro.esc.inquiry.dao.InquiryDTO">
 		SELECT inquirySeq, inquiryTitle, userID, inquiryContent, DATE_FORMAT(inquiryRegDate,'%Y-%m-%d') inquiryRegDate, inquiryParent, inquirySeqOrd, inquiryIndent
          FROM inquiry
          WHERE inquirySeq = #{inquirySeq}
 	</select>
 	
 	<!-- 부모글 정보읽기 -->
-	<select id="selectRepInfo" parameterType="map" resultType="com.pro.esc.inquiry.dao.InquiryVO">
+	<select id="selectRepInfo" parameterType="map" resultType="com.pro.esc.inquiry.dao.InquiryDTO">
 		SELECT inquiryParent,inquirySeqOrd, inquiryIndent
 		FROM inquiry
 		WHERE inquiryParent= #{inquiryParent}
@@ -209,7 +208,7 @@
 	</select>
 	
 	<!-- 글 수정 -->
-	<update id="updateInquiry" parameterType="com.pro.esc.inquiry.dao.InquiryVO">
+	<update id="updateInquiry" parameterType="com.pro.esc.inquiry.dao.InquiryDTO">
         UPDATE inquiry
         SET inquiryTitle = #{inquiryTitle},
             inquiryContent = #{inquiryContent}

@@ -7,7 +7,7 @@
 
 <configuration>
 	<typeAliases>		
-		<typeAlias alias="User" type="com.pro.esc.login.UserVO" />
-		<typeAlias alias="Inquiry" type="com.pro.esc.inquiry.dao.InquiryVO" />
+		<typeAlias alias="User" type="com.pro.esc.login.dao.UserDTO" />
+		<typeAlias alias="Inquiry" type="com.pro.esc.inquiry.dao.InquiryDTO" />
 	</typeAliases>
 </configuration>

@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.pro.esc.login.UserVO;
+
 
 @Repository
 public class LoginDaoImpl implements LoginDao{
@@ -13,9 +13,9 @@ public class LoginDaoImpl implements LoginDao{
 	private SqlSession sqlSession;
 	
 	@Override
-	public int login(UserVO userVO) throws Exception {
+	public int login(UserDTO userDTO) throws Exception {
 		LoginDao mapper= sqlSession.getMapper(LoginDao.class);
-		return mapper.login(userVO);
+		return mapper.login(userDTO);
 	}
 
 }
