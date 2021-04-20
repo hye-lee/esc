@@ -166,9 +166,10 @@
 		SELECT inquirySeq, userID, inquiryTitle, inquiryContent, DATE_FORMAT(inquiryRegDate,'%Y-%m-%d') inquiryRegDate, inquiryCnt, inquiryParent, inquirySeqOrd, inquiryIndent
 		
 		FROM inquiry
-		WHERE inquiryStat='Y'
+		<include refid="search"></include>
 		 <!-- 역순으로 출력 -->
 		ORDER BY inquiryParent DESC, inquirySeqOrd ASC
+
         limit #{startIndex}, #{cntPerPage}
 			
 	</select>
@@ -201,10 +202,11 @@
 	</update>
 	
 	<!-- 총 글 갯수 -->
-	<select id="inquiryCount" resultType="Integer">
+	<select id="inquiryCount" parameterType="com.pro.esc.inquiry.dao.InquiryDTO" resultType="Integer">
 		SELECT COUNT(*)
 		FROM inquiry
-		WHERE inquiryStat= 'Y'
+		<include refid="search"></include>
+		<!-- WHERE inquiryStat= 'Y' -->
 	</select>
 	
 	<!-- 글 수정 -->
@@ -222,5 +224,39 @@
 		SET inquiryStat='N'
 		WHERE inquirySeq=#{inquirySeq}
 	</update>
+	
+	<!-- 검색된 글 갯수 -->
+	<select id="searchCount" resultType="Integer">
+	 	SELECT COUNT(*) 
+	 	FROM inquiry
+	 	
+	 	<include refid="search"></include> 
+		
+	</select>
+	
+		
+	<sql id="search">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			inquiryStat='Y'
+			<if test="keyWord != null and keyWord != '' ">
+				<choose>
+					<when test="searchOption =='all'">
+					AND (userID like CONCAT('%', #{keyWord}, '%')
+				OR inquiryTitle like CONCAT('%', #{keyWord}, '%')
+				OR inquiryContent like CONCAT('%', #{keyWord}, '%'))
+				 </when>
+				 <otherwise>
+				 	AND ${searchOption} like CONCAT('%', #{keyWord}, '%')
+				</otherwise>
+				</choose>
+			</if>
+			</trim>
+
+	</sql>
+	
+		
+
+
+	
 
 </mapper>

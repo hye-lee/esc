@@ -17,11 +17,30 @@ public class InquiryDTO {
     private String inquiryUpDate;					//수정일
     private List<MultipartFile> inquiryFile;       // 업로드 파일
    	
+    //페이징
     private int startIndex;
     private int cntPerPage;
     
+    //답글
     private int inquirySeqOrd;
     private int inquiryIndent;
+    
+    //검색
+    private String keyWord;
+    private String searchOption;
+    
+	public String getKeyWord() {
+		return keyWord;
+	}
+	public void setKeyWord(String keyWord) {
+		this.keyWord = keyWord;
+	}
+	public String getSearchOption() {
+		return searchOption;
+	}
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
+	}
 	public int getInquirySeq() {
 		return inquirySeq;
 	}

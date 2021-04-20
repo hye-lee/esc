@@ -48,10 +48,10 @@ public class InquiryDaoImpl implements InquiryDao {
 	}
 
 	@Override
-	public int inquiryCount() throws Exception {
+	public int inquiryCount(InquiryDTO inquiryDTO) throws Exception {
 		
 		InquiryDao mapper= sqlSession.getMapper(InquiryDao.class);
-		return mapper.inquiryCount();
+		return mapper.inquiryCount(inquiryDTO);
 	}
 
 	@Override

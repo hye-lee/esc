@@ -12,7 +12,7 @@ public interface InquiryDao {
 	
 	void updateCnt(String inquirySeq) throws Exception;
 	
-	int inquiryCount() throws Exception;
+	int inquiryCount(InquiryDTO inquiryDTO) throws Exception;
 	
 	void updateInquiry(InquiryDTO inquiryDTO) throws Exception;
 	

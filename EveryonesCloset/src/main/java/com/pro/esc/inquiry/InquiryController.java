@@ -27,20 +27,28 @@ public class InquiryController {
 	//페이징+글목록
 	@RequestMapping(value="/inquiry")
 	public String inquiry(@ModelAttribute("inquiryDTO") InquiryDTO inquiryDTO,
+			@RequestParam(defaultValue="inquiryTitle") String searchOption,
+			@RequestParam(defaultValue="") String keyWord,
 			@RequestParam(defaultValue="1") int page, Model model,HttpSession session) throws Exception {
 		
 		String checkSession=(String) session.getAttribute("login");
 		
-		int count=inquiryService.inquiryCount();
+		int count=inquiryService.inquiryCount(inquiryDTO);
 		PageDto pageDto=new PageDto(count,page);
+		//페이징
 		inquiryDTO.setStartIndex(pageDto.getStartInx());
 		inquiryDTO.setCntPerPage(pageDto.getRowCount());
+		//검색
+		inquiryDTO.setSearchOption(searchOption);
+		inquiryDTO.setKeyWord(keyWord);
 		
 		List<InquiryDTO> list=inquiryService.selectInquiry(inquiryDTO);
 		model.addAttribute("list",list);
 		model.addAttribute("count", count);
 		model.addAttribute("pageDto", pageDto);
 		model.addAttribute("checkSession",checkSession);
+		model.addAttribute("keyWord",keyWord);
+		model.addAttribute("searchOption",searchOption);
 		
 		return "inquiry/inquiryList.tiles";
 	}

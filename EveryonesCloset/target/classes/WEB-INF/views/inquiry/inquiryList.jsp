@@ -15,6 +15,10 @@
 			 document.location.href="${pageContext.servletContext.contextPath}/write";
 		 });
 		 
+		 $('#btnSearch').click(function(){
+			 $('#searchInq').attr('action','inquiry');
+			 document.searchInq.submit();
+		 })
 		
 		 
 	});
@@ -118,22 +122,23 @@
                        
 </table>
 
-	<form class="form-inline search_width" method="post">
+	<form id="searchInq" name="searchInq" class="form-inline search_width" method="post">
 		<div class="col-md-3"  style="padding-right:1%;">
-			<select class="form-control" style="width:100%"name="inqSearch" id="inqSearch">
-				<option value="titleWriter" <c:if test="${condition eq 'titlename' }">selected</c:if>>제목+작성자</option>
-				<option value="title" <c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
-				<option value="writer" <c:if test="${condition eq 'writer' }">selected</c:if>>작성자</option>
+			<select class="form-control" style="width:100%"name="searchOption" id="searchOption">
+				<option value="all" <c:out value="${searchOption == 'all'?'selected':'' }"/>>제목내용작성자</option>
+				<option value="inquiryTitle" <c:out value="${searchOption == 'inquiryTitle'?'selected':'' }"/>>제목</option>
+				<option value="inquiryContent" <c:out value="${searchOption == 'inquiryContent'?'selected':'' }"/>>내용</option>
+				<option value="userID" <c:out value="${searchOption == 'userID'?'selected':''}"/>>작성자</option>
 			</select>
 		</div>
 		<div class="col-md-6" style="padding:0;">
-		<input type="text"  class="form-control" name="keyword" id="keyword" placeholder="검색어를 입력하세요 Please enter keyword" value="${keyword}"/>
+		<input type="text"  class="form-control" name="keyWord" id="keyWord" placeholder="검색어를 입력하세요 Please enter keyword" value="${keyWord}"/>
 		</div>
-		<div class="col-md-3"  style="padding-left:1%;"><button type="button" class="btn btn-success">검색 Search</button></div>
+		<div class="col-md-3"  style="padding-left:1%;"><button type="button" class="btn btn-success" id="btnSearch" name="btnSearch">검색 Search</button></div>
 
 	</form>
 	
-	
+	${count}개의 게시물이 있습니다.
 
 
 	<nav aria-label="Page navigation example" style="padding-top:3%;">

@@ -44,9 +44,9 @@ public class InquiryServiceImpl implements InquiryService{
 		
 	}
 	
-	public int inquiryCount() throws Exception{
+	public int inquiryCount(InquiryDTO inquiryDTO) throws Exception{
 		
-		return inquiryDao.inquiryCount();
+		return inquiryDao.inquiryCount(inquiryDTO);
 	}
 
 	@Override
