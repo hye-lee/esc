@@ -21,5 +21,7 @@ public interface InquiryDao {
 	void insertInqReply(InquiryVO inquiryVO) throws Exception;
 	
 	InquiryVO selectRepInfo(HashMap<String,String> map) throws Exception;
+	
+	void updateInqReSeq(InquiryVO inquiryVO) throws Exception;
 
 }

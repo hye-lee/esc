@@ -12,7 +12,7 @@
 			}
 		
 		 $('#inquiryAdd').click(function(){
-			 document.location.href="${pageContext.servletContext.contextPath}/inquiryWrite";
+			 document.location.href="${pageContext.servletContext.contextPath}/write";
 		 });
 		 
 		
@@ -94,7 +94,9 @@
 	                        	
 	                        	<tr>
 	                        		<td><c:out value="${pageDto.total-((pageDto.page-1)*pageDto.rowCount+status.index)}"/></td>
-	                        		<td style="text-align: left;"><a href="${link}" style="color : grey;"><c:out value="${list.inquiryTitle }"/></a></td>
+	                        		<td style="text-align: left;">
+	                        			<c:if test="${list.inquiryIndent!=0}"><span style="color:red; font-style:italic; padding-left:${list.inquiryIndent*20}px;">Re:&nbsp;</span></c:if>	
+	                        		<a href="${link}" style="color : grey;"><c:out value="${list.inquiryTitle }"/></a></td>
 	                        		<td><c:out value="${list.userID }"/></td>
 	                        		<td><c:out value="${list.inquiryRegDate }"/></td>
 	                        		<td><c:out value="${list.inquiryCnt }"/></td>

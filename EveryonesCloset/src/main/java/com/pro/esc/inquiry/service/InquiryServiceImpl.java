@@ -68,6 +68,7 @@ public class InquiryServiceImpl implements InquiryService{
 	@Override
 	public void insertInqReply(InquiryVO inquiryVO) throws Exception {
 		// TODO Auto-generated method stub
+		
 		inquiryDao.insertInqReply(inquiryVO);
 	}
 
@@ -75,6 +76,12 @@ public class InquiryServiceImpl implements InquiryService{
 	public InquiryVO selectRepInfo(HashMap<String,String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return inquiryDao.selectRepInfo(map);
+	}
+
+	@Override
+	public void updateInqReSeq(InquiryVO inquiryVO) throws Exception {
+		// TODO Auto-generated method stub
+		inquiryDao.updateInqReSeq(inquiryVO);
 	}
 
 

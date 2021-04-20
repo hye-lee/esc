@@ -40,6 +40,9 @@
 	          var inquiryTitle=form.inquiryTitle.value;
 	          var inquiryContent=form.inquiryContent.value;
 	          var inquiryParent=form.inquiryParent.value;
+	          var plag= form.plag.value;
+	          var inquiryIndent=form.inquiryIndent.value;
+	          var inquirySeqOrd=form.inquiryIndent.value;
 	          console.log("userID: "+userID);
 	          console.log("inquiryTitle: "+inquiryTitle);
 	          console.log("inquiryContent: "+inquiryContent);
@@ -51,6 +54,19 @@
 	        	  }
 	          if(userID.trim()==''){alert("로그인을 해주세요"); return false;}
 	          if(inquiryContent.trim()==''){alert("내용을 입력하세요"); return false;}
+	          
+	          if(plag=='modify'){
+	        	  $("#writeForm").attr("action", "inquirySave");
+	        	  console.log("plag: "+ plag);
+	          }
+	          else if(plag=='reply'){
+	        	  $("#writeForm").attr("action", "replySave");
+	        	  console.log("plag: "+ plag);
+	        	  console.log("inquiryIndent: "+ inquiryIndent);
+	        	  console.log("inquirySeqOrd"+ inquirySeqOrd);
+	          }else{
+	        	  $("#writeForm").attr("action", "inquirySave");
+	          }
 	          form.submit();
 	      });
 	   
@@ -83,7 +99,7 @@
     		<div style="margin-bottom:20px">
     			 <h3 class="text-themecolor contextPadding">질문작성</h3>
     		</div>
-    		<form id="writeForm" name="writeForm" method="post" action="inquirySave">
+    		<form id="writeForm" name="writeForm" method="post">
     			<div class="form-inline contextPadding">
     				<h4>작성자</h4>
     						<input type="text" id="userIDs" name="userIDs" class="form-control contextFont" value="<c:out value='${sessionScope.login}'/>" disabled="true">
@@ -109,6 +125,7 @@
                         <input type="hidden" id="inquiryParent" name="inquiryParent" value="<c:out value='${info.inquiryParent}'/>">
                         <input type="hidden" id="inquirySeqOrd" name="inquirySeqOrd" value="<c:out value='${info.inquirySeqOrd}'/>">
                         <input type="hidden" id="inquiryIndent" name="inquiryIndent" value="<c:out value='${info.inquiryIndent}'/>">
+                        <input type="hidden" id="plag" name="plag" value="<c:out value='${plag}'/>">
                         <button type="button" name="btnSave" id="btnSave"
                                 class="btn waves-effect waves-light btn-block btn-warning">저장</button>
                         <a href="#" onclick="history.back(-1)" data-role="button"

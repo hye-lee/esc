@@ -9,6 +9,10 @@
 		$('#reWrite').click(function(){
 			reWrite();
 		});
+		
+		$('#updateInq').click(function(){
+			document.updateInquiry.submit();
+		});
 	});
 	
 	function reWrite(){
@@ -38,21 +42,27 @@
     		<hr>
     		<div id="inquiryContext"></div>
     		
-    		<form name="reWhiteForm" id="reWhiteForm" method="post" action="inquiryWrite">
-    			
+    		<form name="reWhiteForm" id="reWhiteForm" method="post" action="reply">
+  				 <input type="hidden" name="inquirySeq" value="${info.inquirySeq}">
 	             <input type="hidden" name="inquiryParent" value="${info.inquiryParent}"/>
 	    		 <input type="hidden" name="inquirySeqOrd" value="${info.inquirySeqOrd}"/>
 	    		 <input type="hidden" name="inquiryIndent" value="${info.inquiryIndent}"/>
 	    		 <input type="hidden" name="userID" value="${sessionScope.login}"/>
+	    		
+           </form>
+           
+           <form name="updateInquiry" id="updateInquiry" method="post" action="modify">
+        	   	<input type="hidden" name="inquirySeq" value="${info.inquirySeq}">
            </form>
 			 <input type="hidden" name="inquirySeq" value="${info.inquirySeq}">
+    		seq:<c:out value="${info.inquirySeq}"/>
     		 parent: <c:out value="${info.inquiryParent}"/>
     		 seqOrd: <c:out value="${info.inquirySeqOrd}"/>
     		 indent: <c:out value="${info.inquiryIndent}"/>
     		 <c:if test="${info.userID == sessionScope.login}">
     		 			<button type="button" id="reWrite">답글</button>
-    		 				<a href="inquiryWrite<c:out value="${info.inquirySeq}"/>" class="w3-button">수정</a>
-                            <a href="inquiryWrite?inquirySeq=<c:out value="${info.inquirySeq}"/>" class="w3-button">수정</a>
+    		 			<button type="button" id="updateInq">수정</button>	
+                            
                             <a href="delete?inquirySeq=<c:out value="${info.inquirySeq}"/>" class="w3-button">삭제</a>
                             <%--<a href="#" id="delBtn" name="delBtn" class="del w3-button">삭제</a>--%>
                         </c:if>

@@ -81,6 +81,12 @@ public class InquiryDaoImpl implements InquiryDao {
 		
 		return sqlSession.getMapper(InquiryDao.class).selectRepInfo(map);
 	}
+
+	@Override
+	public void updateInqReSeq(InquiryVO inquiryVO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.getMapper(InquiryDao.class).updateInqReSeq(inquiryVO);
+	}
 	
 	
 	

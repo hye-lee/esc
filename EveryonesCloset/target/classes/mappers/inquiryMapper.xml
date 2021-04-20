@@ -155,7 +155,7 @@
 	<update id="updateInqReSeq" parameterType="com.pro.esc.inquiry.dao.InquiryVO">
     
 	    UPDATE inquiry
-	       SET inquirySeqOrd = #{inquirySeqOrd} + 1
+	       SET inquirySeqOrd = inquirySeqOrd + 1
 	     WHERE inquiryParent = #{inquiryParent} 
 	       AND inquirySeqOrd > #{inquirySeqOrd}
  
@@ -163,7 +163,7 @@
 	
 	
 	<select id="selectInquiry"  parameterType="com.pro.esc.inquiry.dao.InquiryVO" resultType="com.pro.esc.inquiry.dao.InquiryVO">
-		SELECT inquirySeq, userID, inquiryTitle, inquiryContent, DATE_FORMAT(inquiryRegDate,'%Y-%m-%d') inquiryRegDate, inquiryCnt
+		SELECT inquirySeq, userID, inquiryTitle, inquiryContent, DATE_FORMAT(inquiryRegDate,'%Y-%m-%d') inquiryRegDate, inquiryCnt, inquiryParent, inquirySeqOrd, inquiryIndent
 		
 		FROM inquiry
 		WHERE inquiryStat='Y'
@@ -186,6 +186,7 @@
 		SELECT inquiryParent,inquirySeqOrd, inquiryIndent
 		FROM inquiry
 		WHERE inquiryParent= #{inquiryParent}
+		AND inquirySeq=#{inquirySeq}
 	</select>
 	
 	<!-- 조회수증가 -->

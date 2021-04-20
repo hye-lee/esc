@@ -48,7 +48,7 @@ public class InquiryController {
 		return "inquiry/inquiryList.tiles";
 	}
 	
-	@RequestMapping(value="/inquiryWrite")
+	@RequestMapping(value="/write")
 	public String inquiryWrite(HttpServletRequest req, ModelMap modelMap) throws Exception {
 		
 		String inquirySeq = req.getParameter("inquirySeq");
@@ -58,44 +58,63 @@ public class InquiryController {
 		System.out.println("userID: "+userID );
 		System.out.println("글쓰기페이지inquirySeq"+inquirySeq);
 		
-		HashMap<String,String> map=new HashMap<String,String>();
-		map.put("inquiryParent",inquiryParent);
+		return "inquiry/inquiryWrite.tiles";
+	}
+	
+	@RequestMapping(value="/modify")
+	public String inquiryModify(HttpServletRequest req, ModelMap modelMap, Model model) throws Exception {
+		
+		String inquirySeq=req.getParameter("inquirySeq");
 		
 		InquiryVO info=new InquiryVO();
+		info= inquiryService.selectOneInquiry(inquirySeq);
+		modelMap.addAttribute("info", info);
+		model.addAttribute("plag","modify");
 		
-		 if (inquirySeq != null) {
-			  info= inquiryService.selectOneInquiry(inquirySeq);
-		 }else {
-			  info= inquiryService.selectRepInfo(map);
-			
-		 }
-		 modelMap.addAttribute("info", info);
 		return "inquiry/inquiryWrite.tiles";
 	}
 	
 	
 	@RequestMapping(value="/reply")
-	public String inquiryReply(@RequestParam("userID") String userID,
-								@RequestParam("inquiryTitle") String inquiryTitle,
-								@RequestParam("inquiryContent") String inquiryContent,
-								@RequestParam("inquiryParent") int inquiryParent,
-								@RequestParam("inquirySeqOrd") int inquirySeqOrd,
-								@RequestParam("inquiryIndent") int inquiryIndent,
-			HttpServletRequest req, ModelMap modelMap)throws Exception{
+	public String inquiryReply(HttpServletRequest req, ModelMap modelMap, Model model)throws Exception{
 		
-		InquiryVO inquiryVO=new InquiryVO();
-		inquiryVO.setUserID(userID);
-		inquiryVO.setInquiryTitle("RE: "+inquiryTitle);
-		inquiryVO.setInquiryContent(inquiryContent);
-		inquiryVO.setInquiryParent(inquiryParent);
-		inquiryVO.setInquiryIndent(inquiryIndent);
-		inquiryVO.setInquirySeqOrd(inquirySeqOrd);
+		String inquirySeq = req.getParameter("inquirySeq");
+		String inquiryParent= req.getParameter("inquiryParent");
+		HashMap<String,String> map=new HashMap<String,String>();
+		map.put("inquiryParent",inquiryParent);
+		map.put("inquirySeq",inquirySeq);
+		InquiryVO info=new InquiryVO();
+		info= inquiryService.selectRepInfo(map);
+		model.addAttribute("plag","reply");
+		modelMap.addAttribute("info",info);
 		
-		inquiryService.insertInqReply(inquiryVO);
-		
-		return "redirect:/inquiry"; //저장후 글목록으로
+		return "inquiry/inquiryWrite.tiles"; //저장후 글목록으로
 	}
 	
+	@RequestMapping(value="replySave")
+	public String ReplySave(HttpServletRequest req) throws Exception{
+		
+		String inquiryParent=req.getParameter("inquiryParent");
+		String inquirySeqOrd=req.getParameter("inquirySeqOrd");
+		String inquiryIndent=req.getParameter("inquiryIndent");
+
+		InquiryVO vo=new InquiryVO();
+		
+		vo.setInquiryParent(Integer.parseInt(inquiryParent));
+		vo.setInquirySeqOrd(Integer.parseInt(inquirySeqOrd));
+		inquiryService.updateInqReSeq(vo);
+		
+		vo.setInquiryTitle(req.getParameter("inquiryTitle"));
+		vo.setInquiryContent(req.getParameter("inquiryContent"));
+		vo.setUserID(req.getParameter("userID"));
+		
+		vo.setInquiryIndent(Integer.parseInt(inquiryIndent));
+		
+		inquiryService.insertInqReply(vo);
+		
+		
+		return "redirect:/inquiry";
+	}
 	
 	//RequestParam으로 값을 받아와서 실행해봄
 	@RequestMapping(value="inquirySave")
@@ -109,8 +128,7 @@ public class InquiryController {
 		String inquirySeqOrd=req.getParameter("inquirySeqOrd");
 		String inquiryIndent=req.getParameter("inquiryIndent");
 		System.out.println("저장inquirySeq"+inquirySeq);
-		System.out.println("값넘어오나... inquiryParent: " + inquiryParent);
-		System.out.println("값넘어오나... inquirySeqOrd: " + inquirySeqOrd);
+
 		InquiryVO inquiryVO=new InquiryVO();
 		inquiryVO.setInquiryTitle(inquiryTitle);
 		inquiryVO.setInquiryContent(inquiryContent);
@@ -119,18 +137,7 @@ public class InquiryController {
 		
 		if(inquirySeq==""||"".equals(inquirySeq)||"0".equals(inquirySeq))
 		{
-			if(inquiryParent==""||"".equals(inquiryParent)||"0".equals(inquiryParent))
-			{
 				inquiryService.insertInquiry(inquiryVO);
-				
-			}
-			else {
-				inquiryVO.setInquiryTitle("RE: "+inquiryTitle);
-				inquiryVO.setInquiryParent(Integer.parseInt(inquiryParent));
-				inquiryVO.setInquirySeqOrd(Integer.parseInt(inquirySeqOrd));
-				inquiryVO.setInquiryIndent(Integer.parseInt(inquiryIndent));
-				inquiryService.insertInqReply(inquiryVO);
-			}
 			
 		}else {
 			inquiryVO.setInquirySeq(Integer.parseInt(inquirySeq));
@@ -150,10 +157,7 @@ public class InquiryController {
 		String inquiryIndent=req.getParameter("inquiryIndent");
 		
 		inquiryService.updateCnt(inquirySeq); //조회수 증가
-		System.out.println("inquirySeq "+ inquirySeq);
-		System.out.println("inquiryParent "+inquiryParent);
-		System.out.println("inquirySeqOrd "+ inquirySeqOrd);
-		System.out.println("inquiryIndent "+inquiryIndent);
+
 		InquiryVO info=inquiryService.selectOneInquiry(inquirySeq); //글 select
 		
 		modelMap.addAttribute("info",info);
