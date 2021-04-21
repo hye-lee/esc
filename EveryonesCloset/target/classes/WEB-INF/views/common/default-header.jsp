@@ -54,7 +54,9 @@
 		
 			<div class="container">
 				<div class="title-header">
-					<img src="${pageContext.servletContext.contextPath}/resources/images/logo/title4.jpg" alt="" href="${pageContext.servletContext.contextPath}/" />
+					<a href="${pageContext.servletContext.contextPath}/">
+						<img src="${pageContext.servletContext.contextPath}/resources/images/logo/title4.jpg" alt="Everyone's Closet" />
+					</a>
 				</div>
 				
 			
@@ -65,8 +67,8 @@
 				<div class="row outer">
 						<div class="mainmenu">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+								<li><a href="${pageContext.servletContext.contextPath}/" class="active">Home</a></li>
+								<li class="dropdown"><a href="${pageContext.servletContext.contextPath}/shop">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu pull-left">
                                         <li><a href="shop.html">Products</a></li>
 										<li><a href="product-details.html">Product Details</a></li> 

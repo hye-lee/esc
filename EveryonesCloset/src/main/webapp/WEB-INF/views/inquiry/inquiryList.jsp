@@ -74,13 +74,44 @@
 
 }
 
+.text_inquiry{
+	text-align:center;
+	color: #696763;
+  	font-family: 'Quicksand', sans-serif;
+ 	 font-size: 5em;
+ 	 font-weight: 300;
+ 	 padding: 3% 0 1% 0;
+}
+
+.text_inquiry_small{
+	text-align:center;
+	color: #696763;
+  	font-family: 'Quicksand', sans-serif;
+ 	 font-size: 1.5em;
+ 	 font-weight: 300;
+}
+
+.text_count{
+	text_align:left;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1em;
+}
 
 
 </style>
 
 <div class="table_width" >
-	 <button type="button" class="btn btn-warning" style="float:right; margin:3% 0 3% 0;"  id="inquiryAdd" > 문의하기</button>
+
+	<h2 class="text_inquiry">Inquiry</h2>
+	<h5 class="text_inquiry_small">궁금한 점이 있으면 질문하세요!</h5>
+	<div style="margin:3% 0 3% 0;">
+		<button type="button" style="float:right;" class="btn btn-warning" id="inquiryAdd" > 문의하기</button>
+		<div class="text_count">총 <span style="color:red">${count}</span>개의 게시물이 있습니다.</div>
+	</div>
+	
 			<table class="table table-hover">
+				
+			
                         <colgroup>
                             <col width='8%'/>   <%-- 번호 --%>
                             <col width='*%'/>   <%-- 제목 --%>
@@ -138,8 +169,7 @@
 
 	</form>
 	
-	${count}개의 게시물이 있습니다.
-
+	
 
 	<nav aria-label="Page navigation example" style="padding-top:3%;">
 	  <ul class="pagination" style="justify-content:center;">

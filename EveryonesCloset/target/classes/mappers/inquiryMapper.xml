@@ -176,7 +176,7 @@
 	
 	<!-- 글 한개 읽기 -->
 	<select id="selectOneInquiry" parameterType="String" resultType="com.pro.esc.inquiry.dao.InquiryDTO">
-		SELECT inquirySeq, inquiryTitle, userID, inquiryContent, DATE_FORMAT(inquiryRegDate,'%Y-%m-%d') inquiryRegDate, inquiryParent, inquirySeqOrd, inquiryIndent
+		SELECT inquirySeq, inquiryTitle, userID, inquiryContent, inquiryRegDate, inquiryParent, inquirySeqOrd, inquiryIndent
          FROM inquiry
          WHERE inquirySeq = #{inquirySeq}
 	</select>

@@ -3,6 +3,11 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script type="text/javascript">
 
+$(document).ready(function(){
+	
+
+});
+
 function login(){
 	var userID=$("#userID").val();
 	var userPw=$("#userPw").val();
@@ -85,10 +90,10 @@ font-family: 'Roboto', sans-serif;
 					<h2 class="text_login">Login</h2>
 					
 					<div class="form_idpw">
-						<input type="text" id="userID" class="form-control form_idpw2" placeholder="ID" /> 	
-						<input type="password" id="userPw" class="form-control form_idpw2" placeholder="Password" /> 
+						<input type="text" id="userID" name="userID" class="form-control form_idpw2" placeholder="ID" /> 	
+						<input type="password" id="userPw" name="userPw" class="form-control form_idpw2" onkeypress="if(event.keyCode==13) {login(); return false;}" placeholder="Password" /> 
 
-						<button type="button" class="btn waves-effect waves-light btn-block btn-warning form_idpw2" onclick="login();">로그인</button>
+						<button type="button" name="btnLogin" class="btn waves-effect waves-light btn-block btn-warning form_idpw2" onclick="login();">로그인</button>
 						<div class="bottom-text"> 아이디가 없으세요? <a href="${pageContext.servletContext.contextPath}/registerForm"> 회원가입하기 </a></div>
 					
 					</div>
