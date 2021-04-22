@@ -9,5 +9,6 @@
 	<typeAliases>		
 		<typeAlias alias="User" type="com.pro.esc.login.dao.UserDTO" />
 		<typeAlias alias="Inquiry" type="com.pro.esc.inquiry.dao.InquiryDTO" />
+		<typeAlias alias="Product" type="com.pro.esc.shop.dao.ProductDTO" />
 	</typeAliases>
 </configuration>

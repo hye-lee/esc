@@ -236,13 +236,13 @@ a#scrollUp i{
 }
 
 .mainmenu ul li{
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 25px;
+  padding-left: 25px;
 }
 
-.mainmenu ul li:first-child{
+/* .mainmenu ul li:first-child{
   padding-left: 0px;
-}
+} */
 
 .mainmenu ul li a {
 	color: #696763;

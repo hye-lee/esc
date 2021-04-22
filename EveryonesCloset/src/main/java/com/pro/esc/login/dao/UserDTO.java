@@ -11,7 +11,28 @@ public class UserDTO {
 	private String userStat;
 	private String userPostCode;
 	private String userExAddr;
+	private String userPhone;
+	private char userSex;
+	private String userBirth;
 
+	public String getUserPhone() {
+		return userPhone;
+	}
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
+	public char getUserSex() {
+		return userSex;
+	}
+	public void setUserSex(char userSex) {
+		this.userSex = userSex;
+	}
+	public String getUserBirth() {
+		return userBirth;
+	}
+	public void setUserBirth(String userBirth) {
+		this.userBirth = userBirth;
+	}
 	public String getUserID() {
 		return userID;
 	}

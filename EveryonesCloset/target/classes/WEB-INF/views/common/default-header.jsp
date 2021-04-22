@@ -1,11 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript">
+	$().ready(function(){
+		
+		$('#shopClick').click(function(){
+			document.form.shop.submit();
+		});
+		
+	});
+</script>
+
 
 <style>
 	.outer {
                 margin: 0 auto;  /* 세로 가로 */
-                width: 50%;
+                width: 60%;
                 text-align: center;
             }
             
@@ -17,6 +27,16 @@
  			 font-weight: 300;
  			 text-align: center;
     }
+    
+    .mainmenu ul li a {
+	color: #696763;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.5em;
+	font-weight: 400;
+	padding: 0;
+	padding-bottom: 10px;
+}
+
     
  
 </style>
@@ -63,12 +83,13 @@
 			</div>
 	
 		<div class="header-bottom"><!--header-bottom-->
+			
 			<div class="container">
 				<div class="row outer">
 						<div class="mainmenu">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="${pageContext.servletContext.contextPath}/" class="active">Home</a></li>
-								<li class="dropdown"><a href="${pageContext.servletContext.contextPath}/shop">Shop<i class="fa fa-angle-down"></i></a>
+								<li style="padding-left:30px"><a href="${pageContext.servletContext.contextPath}/" class="active">Home</a></li>
+								<li class="dropdown" ><a  href="${pageContext.servletContext.contextPath}/shop">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu pull-left">
                                         <li><a href="shop.html">Products</a></li>
 										<li><a href="product-details.html">Product Details</a></li> 
@@ -78,12 +99,14 @@
                                 </li> 
                                 <li><a href="${pageContext.servletContext.contextPath}/inquiry">Inquiry</a></li>
 								<li><a href="contact-us.html">Sharing</a></li>
-								
+								<li><a href="contact-us.html">Sharing</a></li>
 							</ul>
 						</div>
-					
+					<form id="shop" action="shop">
+						<input type="hidden" id="proCateSeq" value="0">
+					</form>
 					
 				</div>
-			</div>
+			</div> 
 		</div><!--/header-bottom-->
 	</header><!--/header-->
