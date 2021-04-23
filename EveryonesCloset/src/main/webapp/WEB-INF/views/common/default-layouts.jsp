@@ -20,7 +20,7 @@
 	    <link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet">
 		<link href="${pageContext.servletContext.contextPath}/resources/css/main.css" rel="stylesheet">
 		<link href="${pageContext.servletContext.contextPath}/resources/css/responsive.css" rel="stylesheet">
-		
+		<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/assets/node_modules/dropify/dist/css/dropify.css">
 	
 	    <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
@@ -39,7 +39,7 @@
 	        <!-- Bootstrap tether Core JavaScript -->
     	<script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/popper/popper.min.js"></script>
     	<script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-		
+		 <script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/dropify/dist/js/dropify.js"></script>
 		
 		<!-- Font Noto Sans -->
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">

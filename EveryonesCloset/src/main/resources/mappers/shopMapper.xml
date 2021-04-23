@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//maybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+
+<mapper namespace="com.pro.esc.shop.dao.ShopDao">
+	<insert id="insertProduct" parameterType="Product">
+		INSERT INTO product
+		(
+		<trim prefixOverrides=",">
+				<if test="proName!=null">
+					,proName
+				</if>
+				<if test="!proPrice.equals('')">
+					,proPrice
+				</if>
+				<if test="!proStock.equals('')">
+					,proStock
+				</if>
+				<if test="proBrand!=null">
+					,proBrand
+				</if>
+				<if test="proSellCount.equals('')">
+					,proSellCount
+				</if>
+				<if test="proRegDate==null">
+					,proRegDate
+				</if>
+				<if test="proStat==null">
+					,proStat
+				</if>
+				<if test="!proCateSeq.equals('')">
+					,proCateSeq
+				</if>
+				<if test="!sizeSeq.equals('')">
+					,sizeSeq
+				</if>
+				
+			</trim>
+		)
+		VALUE(
+			<trim prefixOverrides=",">
+				<if test="proName!=null">
+					,#{proName}
+				</if>
+				<if test="!proPrice.equals('')">
+					,#{proPrice}
+				</if>
+				<if test="!proStock.equals('')">
+					,#{proStock}
+				</if>
+				<if test="proBrand!=null">
+					,#{proBrand}
+				</if>
+				<if test="proSellCount.equals('')">
+					,0
+				</if>
+				<if test="proRegDate==null">
+					,now()
+				</if>
+				<if test="proStat==null">
+					,'Y'
+				</if>
+				<if test="!proCateSeq.equals('')">
+					,#{proCateSeq}
+				</if>
+				<if test="!sizeSeq.equals('')">
+					,#{sizeSeq}
+				</if>
+			</trim>
+		)
+			
+	</insert>
+	
+	
+	<select id="selectProList" parameterType="map" resultType="Product">
+		SELECT *
+		FROM product
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="proCateSeq!=0">
+				AND proCateSeq=#{proCateSeq}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="selectProListALL" resultType="Product">
+		SELECT *
+		FROM product
+	
+	</select>
+	
+</mapper>
