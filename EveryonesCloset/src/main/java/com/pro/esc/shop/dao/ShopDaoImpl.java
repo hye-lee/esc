@@ -32,4 +32,10 @@ public class ShopDaoImpl implements ShopDao {
 		return sqlSession.getMapper(ShopDao.class).selectProListALL();
 	}
 
+	@Override
+	public ProductDTO selectProOne(int proSeq) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(ShopDao.class).selectProOne(proSeq);
+	}
+
 }

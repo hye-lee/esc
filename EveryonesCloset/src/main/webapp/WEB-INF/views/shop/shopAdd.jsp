@@ -35,7 +35,7 @@
 	상품브랜드:<input type="text" name="proBrand">
 	 상품사이즈: <input type="text" name="sizeSeq">
 	상품카테고리:<input type="text" name="proCateSeq">
-	상품이미지: <input type="file"  class="dropify" name="proImgPath"/>
+	상품이미지: <input type="file"  class="dropify" name="file"/>
 	<br/>
   			  <input type="submit" value="저장">
 </form>

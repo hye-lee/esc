@@ -37,6 +37,9 @@
 				<if test="!sizeSeq.equals('')">
 					,sizeSeq
 				</if>
+				<if test="proImgPath!=null">
+					,proImgPath
+				</if>
 				
 			</trim>
 		)
@@ -69,6 +72,9 @@
 				<if test="!sizeSeq.equals('')">
 					,#{sizeSeq}
 				</if>
+				<if test="proImgPath!=null">
+					,#{proImgPath}
+				</if>
 			</trim>
 		)
 			
@@ -83,12 +89,20 @@
 				AND proCateSeq=#{proCateSeq}
 			</if>
 		</trim>
+		ORDER BY proSeq DESC
 	</select>
 	
 	<select id="selectProListALL" resultType="Product">
 		SELECT *
 		FROM product
 	
+	</select>
+	
+	<select id="selectProOne" parameterType="Integer" resultType="Product">
+		SELECT *
+		FROM product
+		WHERE proSeq=#{proSeq}
+
 	</select>
 	
 </mapper>

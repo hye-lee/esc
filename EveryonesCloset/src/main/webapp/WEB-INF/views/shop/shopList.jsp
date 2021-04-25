@@ -28,18 +28,17 @@
 		$.each(response, function(index, item){
 			
 			var str=
-				'<div class="col-sm-4 appendbody"><div class="product-image-wrapper"><div class="productinfo text-center"><a href="#"><img src="${pageContext.servletContext.contextPath}/resources/images/shop/product12.jpg" style= "width:245px; object-fit:cover" /><h2>'
-				+item.proBrand+'</h2><h3>'+item.proName+'</h3><p>'+item.proPrice+'</p></a></div><div class="choose"><ul class="nav nav-pills nav-justified">';
+				'<div class="col-sm-4 appendbody"><div class="product-image-wrapper"><div class="productinfo text-center"><a href="${pageContext.servletContext.contextPath}/productDetail/'+item.proSeq+'"><img src="${pageContext.servletContext.contextPath}/'+item.proImgPath+'" style= "height:250px; object-fit:cover" /><h2>'
+				+item.proBrand+'</h2><h3>'+item.proName+'</h3><p>'+item.proPrice+'원</p></a></div><div class="choose"><ul class="nav nav-pills nav-justified">';
 				
 				if(item.proStock==0)
 				{
 					str+='<li><a href=""><i class="fa fa-ban"></i>대여불가</a></li><li><a href=""><i class="fa fa-bell"></i>예약하기</a></li>';
 					
 				}else{
-					str+='<li><a href=""><i class="fa fa-plus-square"></i>대여가능</a></li><li><a href=""><i class="fa fa-shopping-cart"></i>장바구니</a></li>';
+					str+='<li><a href=""><i class="fa fa-plus-square"></i>대여가능['+item.proStock+']</a></li><li><a href="${pageContext.servletContext.contextPath}/insertCart?proSeq='+item.proSeq+'"><i class="fa fa-shopping-cart"></i>장바구니</a></li>';
 				}
 
-				console.log("str::"+str);
 				$('#probody').append(str);
 	
 		});

@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.col.channel.UploadFileUtils;
 import com.google.gson.Gson;
 import com.pro.esc.shop.dao.ProductDTO;
 import com.pro.esc.shop.service.ShopService;
@@ -46,7 +46,21 @@ public class ShopController {
 		System.out.println("proCateSeq: "+proCateSeq);
 		
 		List<ProductDTO> list=shopService.selectProList(map);
-		
+		String proImgPath = "";
+	
+	    for(int i=0;i<list.size();i++)
+	      {
+	        int pathStartIndex=list.get(i).getProImgPath().indexOf("resources");
+	         System.out.println("pathStartIndex: "+pathStartIndex);
+	         if(pathStartIndex > -1){
+	        	 proImgPath = list.get(i).getProImgPath().substring(pathStartIndex);
+	         } else {
+	        	 proImgPath = "resources/images/shop/product12.jpg";
+	         }
+	         
+	         list.get(i).setProImgPath(proImgPath);
+	      }
+	      
 		Gson gson=new Gson();
 		String productList=gson.toJson(list);
 		
@@ -86,24 +100,49 @@ public class ShopController {
 		pro.setSizeSeq(Integer.parseInt(sizeSeq));
 		//pro.setProImgPath(proImgPath);
 		
-		/*if(file.isEmpty()){
+		if(file.isEmpty()){
 	         System.out.println("업로드 파일이 존재하지 않습니다.");
+	         pro.setProImgPath("nothing");
 	         
 	      } else {
 	         res.setCharacterEncoding("UTF-8");
 	         res.setContentType("text/html;charset=utf-8");
-	         //String uploadPath=req.getSession().getServletContext().getContextPath();
-
-	         String uploadPath="C:\\workspace_spring\\CoL\\src\\main\\webapp\\resources\\fileUpload\\chnlImg";
-			
-			 String filePath=UploadFileUtils.uploadFile(uploadPath,userID, file.getOriginalFilename(), file.getBytes());
-			 
-	         chnlVO.setChannelImg(uploadPath+filePath);
+	         String uploadPath1=req.getSession().getServletContext().getRealPath("/");
+	         String attachPath="resources/fileUpload/productImg";
 	         
-	      }*/
+	         String uploadPath=uploadPath1+attachPath;
+	        
+			 String filePath=UploadFileUtils.uploadFile(uploadPath,Integer.parseInt(proCateSeq), file.getOriginalFilename(), file.getBytes());
+			 pro.setProImgPath(uploadPath+filePath);
+	         
+	      }
 		
 		shopService.insertProduct(pro);
 		
 		return "redirect:/shop";
+	}
+	
+	@RequestMapping(value="productDetail/{proSeq}")
+	public String productDetail(@PathVariable("proSeq") int proSeq,HttpServletRequest req,ModelMap map) throws Exception{
+		
+		ProductDTO pro=new ProductDTO();
+		System.out.println("seq::"+ proSeq);
+		pro=shopService.selectProOne(proSeq);
+		
+		String proImgPath = "";
+		int pathStartIndex= pro.getProImgPath().indexOf("resources");
+		
+		if(pathStartIndex > -1)
+		{
+			proImgPath=pro.getProImgPath().substring(pathStartIndex);
+		}else {
+			proImgPath="resources/images/shop/product12.jpg";
+		}
+		pro.setProImgPath(proImgPath);
+		
+		map.addAttribute("pro",pro);
+		
+		return "shop/productDetail.tiles";
+		
 	}
 }
