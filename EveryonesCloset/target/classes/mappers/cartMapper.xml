@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//maybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+        
+<mapper namespace="com.pro.esc.cart.dao.CartDao">
+	<select id="selectMyCart" parameterType="String" resultType="Cart">
+		SELECT a.userID as userID, a.cartSeq as cartSeq, b.proSeq as proSeq, b.proName as proName, b.proPrice as proPrice, b.proBrand as proBrand, b.proImgPath as proImgPath
+		FROM cart a INNER JOIN product b
+		ON a.proSeq=b.proSeq
+		WHERE a.userID=#{userID}
+		AND a.proSeq=b.proSeq
+	
+	</select>
+	
+	<insert id="insertCart" parameterType="Cart">
+		INSERT INTO cart
+		(
+			<trim prefixOverrides=",">
+				<if test="userID!=null">
+					,userID
+				</if>
+				<if test="!proSeq.equals('')">
+					,proSeq
+				</if>
+			</trim>
+		)
+		VALUES(
+			<trim prefixOverrides=",">
+				<if test="userID != null">
+					,#{userID}
+				</if>
+				<if test="!proSeq.equals('')">
+					,#{proSeq}
+				</if>
+			</trim>
+		
+		)
+		
+	</insert>
+	
+	<delete id="deleteCartOne" parameterType="Cart">
+		DELETE FROM cart
+		WHERE cartSeq=#{cartSeq}
+		AND userID=#{userID}
+	
+	</delete>
+	
+	<select id="existCart" parameterType="Cart" resultType="Integer">
+		SELECT COUNT(*)
+		FROM cart
+		WHERE userID=#{userID}
+		AND proSeq=#{proSeq}
+	</select>
+	
+	<select id="totalCartPrice" parameterType="String" resultType="Integer">
+		SELECT SUM(a.proPrice)
+		FROM product a INNER JOIN cart b
+		ON a.proSeq= b.proSeq
+		WHERE b.userID=#{userID}
+	</select>
+
+</mapper>

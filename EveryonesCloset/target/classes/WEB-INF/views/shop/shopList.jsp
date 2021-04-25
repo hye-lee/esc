@@ -36,7 +36,7 @@
 					str+='<li><a href=""><i class="fa fa-ban"></i>대여불가</a></li><li><a href=""><i class="fa fa-bell"></i>예약하기</a></li>';
 					
 				}else{
-					str+='<li><a href=""><i class="fa fa-plus-square"></i>대여가능['+item.proStock+']</a></li><li><a href="${pageContext.servletContext.contextPath}/insertCart?proSeq='+item.proSeq+'"><i class="fa fa-shopping-cart"></i>장바구니</a></li>';
+					str+='<li><a href=""><i class="fa fa-plus-square"></i>대여가능['+item.proStock+']</a></li><li><a href="${pageContext.servletContext.contextPath}/cart/insert?proSeq='+item.proSeq+'"><i class="fa fa-shopping-cart"></i>장바구니</a></li>';
 				}
 
 				$('#probody').append(str);
