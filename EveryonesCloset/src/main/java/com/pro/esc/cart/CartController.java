@@ -1,5 +1,6 @@
 package com.pro.esc.cart;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,12 +14,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pro.esc.cart.dao.CartDTO;
 import com.pro.esc.cart.service.CartService;
+import com.pro.esc.shop.dao.ProductDTO;
+import com.pro.esc.shop.service.ShopService;
 
 @Controller
 public class CartController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private ShopService shopService;
 	
 	@RequestMapping(value="/cart")
 	public String CartPage(HttpSession session,ModelMap map)throws Exception{
@@ -90,6 +96,36 @@ public class CartController {
 		return result;
 	}
 	
-	
+	@RequestMapping(value="/cart/orderDetail")
+	public String sendOrder(@RequestParam("choosePro")String[] proSeq, ModelMap map) throws Exception {
+		System.out.println("proSeq::"+proSeq.length);
+		List<ProductDTO> list=new ArrayList<>();
+		ProductDTO proDTO=new ProductDTO();
+		if(proSeq!=null) {
+			
+			for(int i=0;i<proSeq.length;i++) {
+				{
+					proDTO=shopService.selectProOne(Integer.parseInt(proSeq[i]));
+					
+					String proImgPath="";
+					int startIndex=proDTO.getProImgPath().indexOf("resources");
+					
+					if(startIndex>-1)
+					{	proImgPath=proDTO.getProImgPath().substring(startIndex);
+					}else {
+						proImgPath="resources/images/shop/product12.jpg";
+					}
+					proDTO.setProImgPath(proImgPath);
+					System.out.println("여기오나?");
+					list.add(proDTO);
+					
+				}
+			}
+		}
+		
+		map.addAttribute("list",list);
+		
+		return "order/orderPage.tiles";
+	}
 
 }

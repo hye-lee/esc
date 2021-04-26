@@ -61,5 +61,7 @@
 		ON a.proSeq= b.proSeq
 		WHERE b.userID=#{userID}
 	</select>
+	
+	
 
 </mapper>
