@@ -14,4 +14,6 @@ public interface ShopService {
 	List<ProductDTO> selectProListALL()throws Exception;
 	
 	ProductDTO selectProOne(int proSeq) throws Exception;
+	
+	void updateStock(int proSeq)throws Exception;
 }

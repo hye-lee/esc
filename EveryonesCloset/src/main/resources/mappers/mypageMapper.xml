@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//maybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+        
+<mapper namespace="com.pro.esc.mypage.dao.MypageDao">
+	<select id="selectUserOne" parameterType="String" resultType="User">
+		SELECT userEmail, userAddr, userPostCode, userExAddr
+		FROM user
+		WHERE userID=#{userID}	
+	</select>
+</mapper>

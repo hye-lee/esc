@@ -65,6 +65,10 @@
 			
 			proList(proCateSeq1);
 		});
+		
+		
+		
+		
 	});
 	
 	
@@ -118,6 +122,7 @@
 </style>
 
 <div class="shop_width">
+	
 	<hr>
 	<h2 class="text_shop">Shop</h2>
 		<button type="button" id="addProduct" >상품추가</button>
@@ -130,52 +135,52 @@
 								<input type="hidden" id="proCateSeq" name="proCateSeq" value="${proCateSeq}"> 
 		
 							
-								<div class="panel panel-default" value="1">
+								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="#" >ALL</a></h4>
+										<h4 class="panel-title"><a href="${pageContext.servletContext.contextPath }/shop?proCateSeq=0">ALL</a></h4>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="#" value="2">Outer</a></h4>
+										<h4 class="panel-title"><a href="${pageContext.servletContext.contextPath }/shop?proCateSeq=1">Outer</a></h4>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="#">Top</a></h4>
+										<h4 class="panel-title"><a href="${pageContext.servletContext.contextPath }/shop?proCateSeq=2">Top</a></h4>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="#">Dress</a></h4>
+										<h4 class="panel-title"><a href="${pageContext.servletContext.contextPath }/shop?proCateSeq=3">Dress</a></h4>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="#">Pants</a></h4>
+										<h4 class="panel-title"><a href="${pageContext.servletContext.contextPath }/shop?proCateSeq=4">Pants</a></h4>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="#">Skirt</a></h4>
+										<h4 class="panel-title"><a href="${pageContext.servletContext.contextPath }/shop?proCateSeq=5">Skirt</a></h4>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="#">Shoes</a></h4>
+										<h4 class="panel-title"><a href="${pageContext.servletContext.contextPath }/shop?proCateSeq=6">Shoes</a></h4>
 									</div>
 								</div>
 								
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="#">Bags</a></h4>
+										<h4 class="panel-title"><a href="${pageContext.servletContext.contextPath }/shop?proCateSeq=7">Bags</a></h4>
 									</div>
 								</div>
 							
 							</form>
 						</div><!--/category-productsr-->
 					
-						<div class="brands_products"><!--brands_products-->
+						<!-- <div class="brands_products">brands_products
 							<h2>Brands</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
@@ -188,8 +193,8 @@
 									<li><a href=""> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
 								</ul>
 							</div>
-						</div><!--/brands_products-->
-						
+						</div>/brands_products
+						 -->
 						
 						
 					</div>
@@ -197,38 +202,54 @@
 				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">★ Product ★</h2>
+						<h2 class="title text-center">★ <c:out value="${title }"></c:out> ★</h2>
 						
 						<div id="probody">
-						
-						<%-- <div class="col-sm-4 appendbody">
-							<div class="product-image-wrapper">
-								<div class="productinfo text-center">
-									<a href="#">
-										<img src="${pageContext.servletContext.contextPath}/resources/images/shop/product12.jpg" style= "width:245px; object-fit:cover" />
-										<h2>GUCCI</h2>
-										<h3>hoodie basic pattern coat navy</h3>
-										<p>100000원</p>
-										</a>
-								</div>
-	
-								<div class="choose">
-										<ul class="nav nav-pills nav-justified">
-											<c:choose>
-												<c:when test="true">
-													<li><a><i class="fa fa-ban" ></i>대여불가</a></li>
-													<li><a href=""><i class="fa fa-bell"></i>예약하기</a></li>
-												</c:when>
-												<c:otherwise>
-													<li><a href=""><i class="fa fa-plus-square"></i>대여가능</a></li>
-													<li><a href=""><i class="fa fa-shopping-cart"></i>장바구니</a></li>
-												</c:otherwise>
-											</c:choose>
+						<c:choose>
+							<c:when test="${ list!=null}">
+									<c:forEach var="list" items="${list}" varStatus="status">
 							
-										</ul>
-								</div>
-								</div>
-							</div> --%>
+									<div class="col-sm-4 appendbody">
+										<div class="product-image-wrapper">
+									
+										<div class="productinfo text-center">
+										
+										
+											<a href="${pageContext.servletContext.contextPath}/productDetail/${list.proSeq}">
+												<img src="${pageContext.servletContext.contextPath}/${list.proImgPath}" style= "height:250px; object-fit:cover" />
+												<h2><c:out value="${ list.proBrand}"></c:out></h2>
+												<h3><c:out value="${ list.proName}"></c:out></h3>
+												<p><c:out value="${ list.proPrice}"></c:out></p>
+												</a>
+										</div>
+			
+										<div class="choose">
+												<ul class="nav nav-pills nav-justified">
+													<c:choose>
+														<c:when test="${ list.proStock==0}">
+															<li><a><i class="fa fa-ban" ></i>대여불가</a></li>
+															<li><a href=""><i class="fa fa-bell"></i>예약하기</a></li>
+														</c:when>
+														<c:otherwise>
+															<li><a href=""><i class="fa fa-plus-square"></i>대여가능</a></li>
+															<li><a href=""><i class="fa fa-shopping-cart"></i>장바구니</a></li>
+														</c:otherwise>
+													</c:choose>
+									
+												</ul>
+										</div>
+										
+										
+										</div>
+									</div>
+									</c:forEach>
+							</c:when>
+							<c:otherwise>
+							상품없음
+							</c:otherwise>
+						
+						</c:choose>
+						
 							
 						</div>
 						

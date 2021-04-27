@@ -25,17 +25,45 @@ public class ShopController {
 	@Autowired
 	private ShopService shopService;
 	
+	//상품리스트 첫화면
 	@RequestMapping(value="/shop")
-	public String shop(ModelMap map) throws Exception {
+	public String shop(@RequestParam("proCateSeq")String proCateSeq, ModelMap model) throws Exception {
 		
-		//map.addAttribute("proCateSeq",0);
-		
-		/*List<ProductDTO> list=shopService.selectProListALL();
-		map.addAttribute("list",list);*/
-		
+		HashMap<String,String> map=new HashMap<>();
+		map.put("proCateSeq", proCateSeq);
+		List<ProductDTO> list=shopService.selectProList(map);
+
+		if(list!=null)
+		{
+			String proImgPath = "";
+			
+		    for(int i=0;i<list.size();i++)
+		      {
+		        int pathStartIndex=list.get(i).getProImgPath().indexOf("resources");
+
+		         if(pathStartIndex > -1){
+		        	 proImgPath = list.get(i).getProImgPath().substring(pathStartIndex);
+		         } else {
+		        	 proImgPath = "resources/images/shop/product12.jpg";
+		         }
+		         
+		         list.get(i).setProImgPath(proImgPath);
+		      }
+		    model.addAttribute("list",list);
+		    
+			if(Integer.parseInt(proCateSeq)==0) {
+				model.addAttribute("title","ALL");
+				
+			}else {
+				model.addAttribute("title",list.get(1).getProCateName());
+				
+			}
+		}
 		return "shop/shopList.tiles";
+		
 	}
 	
+	//ajax json방식으로 상품리스트 받기
 	@RequestMapping(value="proList",produces="text/json; charset=UTF-8")
 	@ResponseBody
 	public String shopList(HttpServletRequest req, HttpServletResponse res,
@@ -70,12 +98,17 @@ public class ShopController {
 		
 	}
 	
+
+	
+	
+	//상품추가 페이지이동. 추후 관리자만 할수 있도록 수정할 예정
 	@RequestMapping(value="/addProduct")
 	public String addProductPage() {
 		
 		return "shop/shopAdd.tiles";
 	}
 	
+	//상품추가 로직
 	@RequestMapping(value="addGoods")
 	public String addGoods(HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
 		
@@ -122,6 +155,8 @@ public class ShopController {
 		return "redirect:/shop";
 	}
 	
+	
+	//개별 상품설명페이지
 	@RequestMapping(value="productDetail/{proSeq}")
 	public String productDetail(@PathVariable("proSeq") int proSeq,HttpServletRequest req,ModelMap map) throws Exception{
 		

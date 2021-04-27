@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//maybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+        
+<mapper namespace="com.pro.esc.order.dao.OrderDao">
+	<insert id="insertOrder" parameterType="Order">
+		
+	INSERT INTO `order`
+		(
+			<trim prefixOverrides=",">
+				<if test="ordSeq!=null">
+					,ordSeq
+				</if>
+				<if test="userID!=null">
+					,userID
+				</if>
+				<if test="recUser!=null">
+					,recUser
+				</if>
+				<if test="recPhone!=null">
+					,recPhone
+				</if>
+				<if test="recPostCode!=null">
+					,recPostCode
+				</if>
+				<if test="recAddr!=null">
+					,recAddr
+				</if>
+				<if test="recExAddr!=null">
+					,recExAddr
+				</if>
+				<if test="ordDate==null">
+					,ordDate
+				</if>
+				<if test="!ordTotal.equals('')">
+					,ordTotal
+				</if>
+				<if test="ordPayment!=null">
+					,ordPayment
+				</if>
+			</trim>
+		)
+		VALUES(
+			<trim prefixOverrides=",">
+				<if test="ordSeq!=null">
+					,#{ordSeq}
+				</if>
+				<if test="userID!=null">
+					,#{userID}
+				</if>
+				<if test="recUser!=null">
+					,#{recUser}
+				</if>
+				<if test="recPhone!=null">
+					,#{recPhone}
+				</if>
+				<if test="recPostCode!=null">
+					,#{recPostCode}
+				</if>
+				<if test="recAddr!=null">
+					,#{recAddr}
+				</if>
+				<if test="recExAddr!=null">
+					,#{recExAddr}
+				</if>
+				<if test="ordDate==null">
+					,now()
+				</if>
+				<if test="!ordTotal.equals('')">
+					,#{ordTotal}
+				</if>
+				<if test="ordPayment!=null">
+					,#{ordPayment}
+				</if>
+			</trim>
+
+		)
+	
+	</insert>
+	
+	
+	<insert id="insertOrderPro" parameterType="OrderProduct">
+		INSERT INTO order_product(ordSeq,proSeq)
+			 SELECT #{ordSeq},#{proSeq}
+			 FROM cart
+	</insert>
+
+
+	<select id="selectOrderProduct" parameterType="int" resultType="Cart">
+		SELECT a.cartSeq as cartSeq, a.proSeq as proSeq, b.proBrand as proBrand, b.proName as proName, b.proImgPath as proImgPath , b.proPrice as proPrice
+		FROM cart a INNER JOIN product b
+		ON a.proSeq=b.proSeq
+		WHERE cartSeq=#{cartSeq}
+	
+	</select>
+	
+	<select id="existOrder" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM order_product a inner join `order` b
+		on a.ordSeq=b.ordSeq
+		WHERE proSeq=#{proSeq}
+		AND userID=#{userID}
+	</select>
+	
+
+	
+	
+</mapper>

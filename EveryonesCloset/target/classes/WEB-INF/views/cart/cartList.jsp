@@ -90,7 +90,7 @@ function checkAll(){
 			var confirm=window.confirm('삭제하시겠습니까?');
 			var userID=$('#userID').val();
 			var cartSeq=$('#cartSeq').val();
-			
+			console.log("cartSeq::"+cartSeq);
 			if(confirm){
 				$.ajax({
 					type: "post",
@@ -133,10 +133,7 @@ function checkAll(){
 		padding-top:3%;
 	}
 	
-	.cart_item{
-		height:60px;
-		
-	}
+	.cart_item{height:60px;}
 	
 	.cart_head th{
 		text-align:center;
@@ -145,14 +142,9 @@ function checkAll(){
 		
 	}
 	
-	.cart_body td{
-		text-align:center;
-		font-size: 1em;
-	}
+	.cart_body td{text-align:center; font-size: 1em;}
 
-	.cart_foot td{
-		text-align:center;
-	}
+	.cart_foot td{text-align:center;}
 
 </style>
 
@@ -160,7 +152,7 @@ function checkAll(){
 	<hr>
 	<h2 class="text_cart">Cart</h2>
 	
-	<form id="cartForm" method="post" action="cart/orderDetail">
+	<form id="cartForm" method="post" action="orderDetail">
 	
 		<table  class="table">
 			<colgroup>
@@ -191,6 +183,7 @@ function checkAll(){
 			<c:choose><c:when test="${list.size()!=0}">
 				
 				<c:forEach var="list" items="${list}" varStatus="status">
+				
 					<c:url var="link" value="productDetail/${list.proSeq}">
 	                    <c:param name="proSeq" value="${list.proSeq}"/>
 	                </c:url>
@@ -198,13 +191,14 @@ function checkAll(){
 					<c:if test="${sessionScope.login!=null}">
 					 	<input type="hidden" id="userID" value="${sessionScope.login }"/>
 					</c:if>
+					<input type="hidden" id="cartSeq" name="cartSeq" value="${list.cartSeq}">
 					
 					<tr class="cart_body">
 						
 						
 						<td>
 							<div class="checkbox">
-								<input type="checkbox"  id="choosePro" name="choosePro" value="${list.proSeq}"/>
+								<input type="checkbox"  id="choosePro" name="choosePro" value="${list.cartSeq}"/>
 							</div>
 						</td>
 						
@@ -214,7 +208,7 @@ function checkAll(){
 							<h3><a href="${link}" style="color:gray;">[<c:out value="${list.proBrand}"/>] <c:out value="${list.proName}"/></a></h3>
 						</td>
 						
-						<td><h3><fmt:formatNumber value="${list.proPrice}" pattern="#,###,###" /><input type="hidden" id="proPrice" name="proPrice" value="${list.proPrice}"></h3></td>
+						<td><h3><fmt:formatNumber value="${list.proPrice}" pattern="#,###,###" />원<input type="hidden" id="proPrice" name="proPrice" value="${list.proPrice}"></h3></td>
 						
 						<td><h3>3일</h3></td>
 						<td><button type="button" class="close" id="deleteCart" aria-label="Close"><span aria-hidden="true" style="color:red; "><h2>&times;</h2></span></button></td>

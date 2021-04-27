@@ -38,4 +38,11 @@ public class ShopDaoImpl implements ShopDao {
 		return sqlSession.getMapper(ShopDao.class).selectProOne(proSeq);
 	}
 
+	@Override
+	public void updateStock(int proSeq) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.getMapper(ShopDao.class).updateStock(proSeq);
+		
+	}
+
 }

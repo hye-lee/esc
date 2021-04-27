@@ -14,7 +14,14 @@ public class ProductDTO {
 	private int sizeSeq;
 	private char proStat;
 	private String proImgPath;
+	private String proCateName;
 	
+	public String getProCateName() {
+		return proCateName;
+	}
+	public void setProCateName(String proCateName) {
+		this.proCateName = proCateName;
+	}
 	public int getProSeq() {
 		return proSeq;
 	}

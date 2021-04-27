@@ -39,6 +39,12 @@ public class ShopServiceImpl implements ShopService {
 		// TODO Auto-generated method stub
 		return shopDao.selectProOne(proSeq);
 	}
+
+	@Override
+	public void updateStock(int proSeq) throws Exception {
+		// TODO Auto-generated method stub
+		shopDao.updateStock(proSeq);
+	}
 	
 	
 }

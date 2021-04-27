@@ -6,6 +6,8 @@
         
 
 <mapper namespace="com.pro.esc.shop.dao.ShopDao">
+
+	<!-- 상품추가 -->
 	<insert id="insertProduct" parameterType="Product">
 		INSERT INTO product
 		(
@@ -80,29 +82,40 @@
 			
 	</insert>
 	
-	
+	<!-- 모든상품 또는 개별카테고리 리스트 출력 -->
 	<select id="selectProList" parameterType="map" resultType="Product">
-		SELECT *
-		FROM product
+		SELECT a.proSeq, a.proBrand, a.proName, a.proPrice, a.ProImgPath, a.proCateSeq, b.proCateName
+		FROM product a INNER JOIN procategory b
+		ON a.proCateSeq=b.proCateSeq
 		<trim prefix="WHERE" prefixOverrides="AND">
 			<if test="proCateSeq!=0">
-				AND proCateSeq=#{proCateSeq}
+				AND a.proCateSeq=#{proCateSeq}
 			</if>
 		</trim>
 		ORDER BY proSeq DESC
 	</select>
 	
+	<!-- 모든상품 리스트 출력 ver.2-->
 	<select id="selectProListALL" resultType="Product">
 		SELECT *
 		FROM product
 	
 	</select>
 	
+	<!-- 개별 상품설명  -->
 	<select id="selectProOne" parameterType="Integer" resultType="Product">
 		SELECT *
 		FROM product
 		WHERE proSeq=#{proSeq}
 
 	</select>
+	
+	<!-- 구입시 재고 업데이트 -->
+	<update id="updateStock" parameterType="int">
+		UPDATE product
+		SET proStock=proStock-1
+		WHERE proSeq=#{proSeq}
+	</update>
+	
 	
 </mapper>

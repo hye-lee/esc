@@ -89,7 +89,7 @@
 						<div class="mainmenu">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li style="padding-left:30px"><a href="${pageContext.servletContext.contextPath}/" class="active">Home</a></li>
-								<li class="dropdown" ><a  href="${pageContext.servletContext.contextPath}/shop">Shop<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown" ><a  href="${pageContext.servletContext.contextPath}/shop?proCateSeq=0">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu pull-left">
                                         <li><a href="shop.html">Products</a></li>
 										<li><a href="product-details.html">Product Details</a></li> 

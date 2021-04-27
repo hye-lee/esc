@@ -31,7 +31,7 @@ public class LoginContoller {
         String encryPw=SHA256.encrypt(userPw);
         UserDTO userDTO=new UserDTO();
         userDTO.setUserID(userID);
-        userDTO.setUserPw(userPw);
+        userDTO.setUserPw(encryPw);
         
         if(loginService.login(userDTO)==1)
         {

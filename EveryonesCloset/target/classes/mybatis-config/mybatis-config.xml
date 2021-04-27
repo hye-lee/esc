@@ -11,5 +11,7 @@
 		<typeAlias alias="Inquiry" type="com.pro.esc.inquiry.dao.InquiryDTO" />
 		<typeAlias alias="Product" type="com.pro.esc.shop.dao.ProductDTO" />
 		<typeAlias alias="Cart" type="com.pro.esc.cart.dao.CartDTO" />
+		<typeAlias alias="Order" type="com.pro.esc.order.dao.OrderDTO" />
+		<typeAlias alias="OrderProduct" type="com.pro.esc.order.dao.OrderProductDTO" />
 	</typeAliases>
 </configuration>
