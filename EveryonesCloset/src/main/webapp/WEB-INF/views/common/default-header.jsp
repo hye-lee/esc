@@ -62,7 +62,7 @@
 								<li><a href="${pageContext.servletContext.contextPath}/login"><i class="fa fa-lock"></i> Login</a></li>
 								</c:if>
 								<c:if test="${sessionScope.login != null}" >
-								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="${pageContext.servletContext.contextPath}/mypage"><i class="fa fa-user"></i> Account</a></li>
 								<li><a href="${pageContext.servletContext.contextPath}/logout"><i class="fa fa-unlock"></i> Logout</a></li>
 								</c:if>
 							</ul>
