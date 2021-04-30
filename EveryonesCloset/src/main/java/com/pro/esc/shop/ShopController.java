@@ -29,7 +29,7 @@ public class ShopController {
 	@RequestMapping(value="/shop")
 	public String shop(@RequestParam("proCateSeq")String proCateSeq, ModelMap model) throws Exception {
 		
-		HashMap<String,String> map=new HashMap<>();
+		HashMap<String,String> map=new HashMap<String, String>();
 		map.put("proCateSeq", proCateSeq);
 		List<ProductDTO> list=shopService.selectProList(map);
 

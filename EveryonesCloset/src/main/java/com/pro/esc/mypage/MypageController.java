@@ -49,7 +49,7 @@ public class MypageController {
 	@ResponseBody
 	public String checkPw(@RequestParam("userPw")String userPw,HttpSession session) throws Exception {
 		
-		HashMap<String,String> map=new HashMap<>();
+		HashMap<String,String> map=new HashMap<String, String>();
 		SHA256 sha256=new SHA256();
 		String enUserPw=sha256.encrypt(userPw);
 		map.put("userPw", enUserPw);

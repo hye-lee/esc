@@ -43,7 +43,7 @@ public class OrderController {
 	@RequestMapping(value="/orderDetail")
 	public String sendOrder(@RequestParam("choosePro")String[] cartSeq, HttpSession session, ModelMap map) throws Exception {
 		System.out.println("cartSeq::"+cartSeq.length);
-		List<CartDTO> list=new ArrayList<>();
+		List<CartDTO> list=new ArrayList<CartDTO>();
 
 		CartDTO cartDTO=new CartDTO();
 		String userID=(String)session.getAttribute("login");
@@ -96,7 +96,7 @@ public class OrderController {
 		orderDTO.setUserID(userID);
 		for(int i=0;i<proSeq.length;i++)
 		{
-			HashMap<String,Object> map=new HashMap<>();
+			HashMap<String,Object> map=new HashMap<String, Object>();
 			map.put("userID", userID);
 			map.put("proSeq", proSeq[i]);
 			if(orderService.existOrder(map)>1)

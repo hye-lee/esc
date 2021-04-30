@@ -17,4 +17,37 @@
 			</if>
 		</trim>
 	</select>
+	
+	<select id="findId" parameterType="map" resultType="String">
+		SELECT userID
+		FROM user
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userName!=null">
+				AND userName= #{userName}
+			</if>
+			<if test="userEmail!=null">
+				AND userEmail=#{userEmail}
+			</if>
+		</trim>
+	
+	</select>
+	
+	<select id="findPw" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM user
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userID!=null">
+				AND userID= #{userID}
+			</if>
+			<if test="userEmail!=null">
+				AND userEmail=#{userEmail}
+			</if>
+		</trim>
+	
+	</select>
+	
+	
+	<update id="updatePw" parameterType="map">
+		UPDATE user SET userPw = #{userPw} WHERE userID = #{userID} AND userEmail = #{userEmail}
+	</update>
 </mapper>

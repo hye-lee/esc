@@ -5,6 +5,13 @@
 
 $(document).ready(function(){
 	
+	$('#findId').click(function(){
+		location.href="${pageContext.servletContext.contextPath}/login/findId";
+	});
+	
+	$('#findPw').click(function(){
+		location.href="${pageContext.servletContext.contextPath}/login/findPw";
+	});
 
 });
 
@@ -19,7 +26,7 @@ function login(){
 		}else{
 			$.ajax({
 				type: 'post',
-				url: '${pageContext.servletContext.contextPath}'+'/login',
+				url: '${pageContext.servletContext.contextPath}'+'/trylogin',
 				data: {
 					userID:$('#userID').val(), userPw:$('#userPw').val()
 				},
@@ -78,6 +85,17 @@ font-family: 'Roboto', sans-serif;
  	font-weight: 300;
 }
 
+.btn-center{
+		position: absolute; 
+		left: 0;
+		right: 0; 
+		margin:0 auto;
+}
+
+.btn-padding{
+	padding:5% 0 0 0;
+}
+
 </style>
 
 
@@ -90,12 +108,24 @@ font-family: 'Roboto', sans-serif;
 					<h2 class="text_login">Login</h2>
 					
 					<div class="form_idpw">
-						<input type="text" id="userID" name="userID" class="form-control form_idpw2" placeholder="ID" /> 	
+						<c:choose>
+							<c:when test="${userID!=null }">
+								<input type="text" id="userID" name="userID" value="${userID}" class="form-control form_idpw2" placeholder="ID" /> 	
+							</c:when>
+							<c:otherwise>
+								<input type="text" id="userID" name="userID" class="form-control form_idpw2" placeholder="ID" /> 	
+							</c:otherwise>
+						</c:choose>
+
 						<input type="password" id="userPw" name="userPw" class="form-control form_idpw2" onkeypress="if(event.keyCode==13) {login(); return false;}" placeholder="Password" /> 
 
 						<button type="button" name="btnLogin" class="btn waves-effect waves-light btn-block btn-warning form_idpw2" onclick="login();">로그인</button>
 						<div class="bottom-text"> 아이디가 없으세요? <a href="${pageContext.servletContext.contextPath}/registerForm"> 회원가입하기 </a></div>
-					
+						<h2 style="text-align:center;">or</h2>
+						<div class="text-center btn-margin btn-padding">
+							<button type="button" id="findId" class="btn btn-warning">ID찾기</button>
+							<button type="button" id="findPw" class="btn btn-warning">PW찾기</button>
+						</div>
 					</div>
 				</div>
 				<!--/login form-->
