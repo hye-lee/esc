@@ -2,6 +2,7 @@ package com.pro.esc.mypage;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +58,21 @@ public class MypageController {
 		String result=myService.checkUserPw(map);
 		System.out.println("결과::" +result);
 		return result;
+	}
+	
+	@RequestMapping(value="/mypage/deleteUser")
+	public String delUser( HttpSession session) throws Exception{
+		
+		String userID=(String)session.getAttribute("login");
+		
+		if(myService.updateUserStat(userID)==1)
+		{
+			session.invalidate();
+			return "mypage/bye.tiles";
+		}
+		else {
+			return "redirect:/mypage/withdrawal";
+		}
+		
 	}
 }

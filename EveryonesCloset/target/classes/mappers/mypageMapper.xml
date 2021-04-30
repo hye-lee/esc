@@ -18,4 +18,10 @@
 		WHERE userID=#{userID}
 	</select>
 	
+	<update id="updateUserStat" parameterType="String">
+		UPDATE user
+		SET userStat='N'
+		WHERE userID=#{userID}
+	</update>
+	
 </mapper>

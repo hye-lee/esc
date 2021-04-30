@@ -25,5 +25,11 @@ public class MypageServiceImpl implements MypageService {
 		// TODO Auto-generated method stub
 		return mypageDao.checkUserPw(map);
 	}
+
+	@Override
+	public int updateUserStat(String userID) throws Exception {
+		// TODO Auto-generated method stub
+		return mypageDao.updateUserStat(userID);
+	}
 	
 }

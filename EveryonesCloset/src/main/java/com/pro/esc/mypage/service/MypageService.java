@@ -9,4 +9,6 @@ public interface MypageService {
 	UserDTO selectUserOne(String userID)throws Exception;
 
 	String checkUserPw(HashMap<String, String> map) throws Exception;
+	
+	int updateUserStat(String userID)throws Exception;
 }

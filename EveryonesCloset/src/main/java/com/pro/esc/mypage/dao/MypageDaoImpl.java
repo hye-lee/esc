@@ -25,5 +25,11 @@ public class MypageDaoImpl implements MypageDao {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(MypageDao.class).checkUserPw(map);
 	}
+
+	@Override
+	public int updateUserStat(String userID) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(MypageDao.class).updateUserStat(userID);
+	}
 	
 }

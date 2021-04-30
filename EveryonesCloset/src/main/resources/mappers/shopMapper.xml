@@ -84,7 +84,7 @@
 	
 	<!-- 모든상품 또는 개별카테고리 리스트 출력 -->
 	<select id="selectProList" parameterType="map" resultType="Product">
-		SELECT a.proSeq, a.proBrand, a.proName, a.proPrice, a.ProImgPath, a.proCateSeq, b.proCateName
+		SELECT a.proSeq, a.proBrand, a.proName, a.proPrice, a.ProImgPath, a.proCateSeq, b.proCateName, a.proStock
 		FROM product a INNER JOIN procategory b
 		ON a.proCateSeq=b.proCateSeq
 		<trim prefix="WHERE" prefixOverrides="AND">

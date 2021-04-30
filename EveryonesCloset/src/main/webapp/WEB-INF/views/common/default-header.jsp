@@ -41,9 +41,12 @@
  
 </style>
 
+
 <header id="header"><!--header-->
 		<div class="header-middle"><!--header-middle-->
+
 			<div class="container">
+				
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="search_box pull-left">
@@ -56,6 +59,11 @@
 								
 								<!--  <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>-->
+								
+								<c:if test="${sessionScope.login != null}" >
+								<li><a href=""><i class="glyphicon glyphicon-heart"></i><c:out value="${sessionScope.login}"/>님 환영합니다!</a></li>
+								</c:if>
+								
 								<li><a href="${pageContext.servletContext.contextPath}/cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								
 								<c:if test="${sessionScope.login == null}" >
