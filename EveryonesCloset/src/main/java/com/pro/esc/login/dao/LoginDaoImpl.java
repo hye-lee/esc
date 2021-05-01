@@ -34,7 +34,7 @@ public class LoginDaoImpl implements LoginDao{
 
 	@Override
 	public int updatePw(HashMap<String, String> map) throws Exception {
-		return sqlSession.getMapper(LoginDao.class).findPw(map);
+		return sqlSession.getMapper(LoginDao.class).updatePw(map);
 	}
 
 }

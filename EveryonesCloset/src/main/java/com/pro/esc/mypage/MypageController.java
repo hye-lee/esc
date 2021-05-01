@@ -1,16 +1,20 @@
 package com.pro.esc.mypage;
 
 import java.util.HashMap;
+import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pro.esc.inquiry.dao.InquiryDTO;
+import com.pro.esc.inquiry.dao.PageDto;
+import com.pro.esc.login.dao.UserDTO;
 import com.pro.esc.mypage.service.MypageService;
 import com.pro.esc.register.service.SHA256;
 
@@ -26,12 +30,47 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/mypage/myInfo")
-	public String myInfo() {
+	public String myInfo(HttpSession session, ModelMap model) throws Exception {
+		
+		String userID=(String)session.getAttribute("login");
+		UserDTO user=myService.selectUserOne(userID);
+		
+		String tmp= user.getUserAddr();
+		String userAddr=tmp.substring(0,tmp.lastIndexOf(','));
+		String userAddrDetail=tmp.substring(tmp.lastIndexOf(',')+1, tmp.length());
+
+		user.setUserAddr(userAddr);
+		user.setUserAddrDetail(userAddrDetail);
+		model.addAttribute("user",user);
+		
 		return"mypage/userInfoUpdate.tiles";
 	}
 	
 	@RequestMapping(value="/mypage/inquiry")
-	public String myInquiry() {
+	public String myInquiry(@RequestParam(defaultValue="inquiryTitle") String searchOption,
+			@RequestParam(defaultValue="") String keyWord,
+			@RequestParam(defaultValue="1") int page,HttpSession session,ModelMap model) throws Exception {
+		
+		String userID=(String)session.getAttribute("login");
+		InquiryDTO inquiryDTO=new InquiryDTO();
+		inquiryDTO.setUserID(userID);
+		
+		int count=myService.countMyInquiry(userID);
+		PageDto pageDto=new PageDto(count,page);
+		//페이징
+		inquiryDTO.setStartIndex(pageDto.getStartInx());
+		inquiryDTO.setCntPerPage(pageDto.getRowCount());
+		//검색
+		inquiryDTO.setSearchOption(searchOption);
+		inquiryDTO.setKeyWord(keyWord);
+		
+		List<InquiryDTO> list=myService.selectMyInquiry(inquiryDTO);
+		model.addAttribute("list",list);
+		model.addAttribute("count", count);
+		model.addAttribute("pageDto", pageDto);
+		model.addAttribute("keyWord",keyWord);
+		model.addAttribute("searchOption",searchOption);
+
 		return"mypage/myInquiry.tiles";
 	}
 	

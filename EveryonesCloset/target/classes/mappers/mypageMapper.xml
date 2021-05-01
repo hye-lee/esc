@@ -7,7 +7,7 @@
         
 <mapper namespace="com.pro.esc.mypage.dao.MypageDao">
 	<select id="selectUserOne" parameterType="String" resultType="User">
-		SELECT userEmail, userAddr, userPostCode, userExAddr
+		SELECT *
 		FROM user
 		WHERE userID=#{userID}	
 	</select>
@@ -23,5 +23,20 @@
 		SET userStat='N'
 		WHERE userID=#{userID}
 	</update>
+	
+	<select id="selectMyInquiry" parameterType="Inquiry" resultType="Inquiry">
+		SELECT inquirySeq, userID, inquiryTitle, inquiryContent, DATE_FORMAT(inquiryRegDate,'%Y-%m-%d') inquiryRegDate, inquiryCnt, inquiryParent, inquirySeqOrd, inquiryIndent
+		FROM inquiry
+		WHERE userID=#{userID}
+		ORDER BY inquiryParent DESC, inquirySeqOrd ASC
+        limit #{startIndex}, #{cntPerPage}
+	</select>
+	
+	<select id="countMyInquiry" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM inquiry
+		WHERE userID=#{userID}
+	
+	</select>
 	
 </mapper>

@@ -14,7 +14,15 @@ public class UserDTO {
 	private String userPhone;
 	private char userSex;
 	private String userBirth;
+	
+	private String userAddrDetail;
 
+	public String getUserAddrDetail() {
+		return userAddrDetail;
+	}
+	public void setUserAddrDetail(String userAddrDetail) {
+		this.userAddrDetail = userAddrDetail;
+	}
 	public String getUserPhone() {
 		return userPhone;
 	}

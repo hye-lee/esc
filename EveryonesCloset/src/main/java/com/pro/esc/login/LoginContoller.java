@@ -122,13 +122,11 @@ public class LoginContoller {
 		map.put("userID", userID);
 		map.put("userEmail", userEmail);
 		
-		UserDTO user=new UserDTO();
-		
-		if(loginService.findPw(map)==1) {
+
 			//임시 비밀번호 생성
-	        String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // -를 제거해줌.  
-	        uuid = uuid.substring(0, 10); //uuid를 앞에서부터 10자리 잘라줌.  
-	        System.out.println(uuid);
+		String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // -를 제거해줌.  
+	    uuid = uuid.substring(0, 8); //uuid를 앞에서부터 8자리 잘라줌.  
+	    System.out.println(uuid);
 	        
 	        if(userEmail != "") {
 	        	String setfrom = "meoba1175@gmail.com";         
@@ -137,6 +135,7 @@ public class LoginContoller {
 	            String content = "귀하의 임시비밀번호는  [ " + uuid + " ] 입니다.";   	// 내용
 	            SHA256 sha256 = new SHA256();
 	            String newPw = sha256.encrypt(uuid);					//암호화
+	            
 	            map.put("userPw", newPw);
 	            if(loginService.updatePw(map)==1) {
 	            	System.out.println("성공");
@@ -157,9 +156,7 @@ public class LoginContoller {
 	            }
 	        
 	        }
-		}
-		
-		
+
 		
 		return "login/resultPw.tiles";
 	}

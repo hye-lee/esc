@@ -13,6 +13,17 @@
    	 	<meta name="description" content="">
    	 	<meta name="author" content="">
     	<title>Everyone's Closet</title>
+    	
+    	<!-- All Jquery -->
+	    <!-- ============================================================== -->
+	    <script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
+	
+	    <!-- Bootstrap tether Core JavaScript -->
+    	<script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/popper/popper.min.js"></script>
+    	<script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/dropify/dist/js/dropify.js"></script>
+    	
+    	
     	<link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     	<link href="${pageContext.servletContext.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet">
 	    <link href="${pageContext.servletContext.contextPath}/resources/css/prettyPhoto.css" rel="stylesheet">
@@ -32,14 +43,7 @@
 	    <link rel="apple-touch-icon-precomposed" href="${pageContext.servletContext.contextPath}/resources/images/ico/apple-touch-icon-57-precomposed.png">
 	
 		
-		 <!-- All Jquery -->
-	    <!-- ============================================================== -->
-	    <script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
 	
-	        <!-- Bootstrap tether Core JavaScript -->
-    	<script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/popper/popper.min.js"></script>
-    	<script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-		 <script src="${pageContext.servletContext.contextPath}/resources/assets/node_modules/dropify/dist/js/dropify.js"></script>
 		
 		<!-- Font Noto Sans -->
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
