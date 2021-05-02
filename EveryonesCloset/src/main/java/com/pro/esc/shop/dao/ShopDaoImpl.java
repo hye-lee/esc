@@ -45,4 +45,10 @@ public class ShopDaoImpl implements ShopDao {
 		
 	}
 
+	@Override
+	public List<ProductDTO> selectTOP5() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(ShopDao.class).selectTOP5();
+	}
+
 }

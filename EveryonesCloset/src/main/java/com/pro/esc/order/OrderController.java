@@ -40,9 +40,13 @@ public class OrderController {
 	@Autowired
 	private CartService cartService;
 	
-	@RequestMapping(value="/orderDetail")
-	public String sendOrder(@RequestParam("choosePro")String[] cartSeq, HttpSession session, ModelMap map) throws Exception {
+	@RequestMapping(value="/orderDetail") //@RequestParam("choosePro")String[] cartSeq
+	public String sendOrder(HttpServletRequest req, HttpSession session, ModelMap map) throws Exception {
+		
+		String[] cartSeq=(String[]) req.getAttribute("choosePro");
+		
 		System.out.println("cartSeq::"+cartSeq.length);
+		
 		List<CartDTO> list=new ArrayList<CartDTO>();
 
 		CartDTO cartDTO=new CartDTO();

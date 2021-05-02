@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 
@@ -51,7 +52,7 @@
 			document.location.href="${pageContext.servletContext.contextPath}/addProduct";
 		});
 		
-		var proCateSeq=$("#proCateSeq").val();
+		/* var proCateSeq=$("#proCateSeq").val();
 		
 		if(proCateSeq==0){
 			console.log("proCateSeq:: "+proCateSeq);
@@ -64,7 +65,7 @@
 			var proCateSeq1=$("#proCateSeq").val();
 			
 			proList(proCateSeq1);
-		});
+		}); */
 		
 		
 		
@@ -219,7 +220,7 @@
 												<img src="${pageContext.servletContext.contextPath}/${list.proImgPath}" style= "height:250px; object-fit:cover" />
 												<h2><c:out value="${ list.proBrand}"></c:out></h2>
 												<h3><c:out value="${ list.proName}"></c:out></h3>
-												<p><c:out value="${ list.proPrice}"></c:out></p>
+												<p><fmt:formatNumber value="${list.proPrice}" pattern="#,###,###" />원</p>
 												</a>
 										</div>
 			
@@ -231,8 +232,8 @@
 															<li><a href=""><i class="fa fa-bell"></i>예약하기</a></li>
 														</c:when>
 														<c:otherwise>
-															<li><a href=""><i class="fa fa-plus-square"></i>대여가능</a></li>
-															<li><a href=""><i class="fa fa-shopping-cart"></i>장바구니</a></li>
+															<li><a href=""><i class="fa fa-plus-square"></i>대여가능[${list.proStock}]</a></li>
+															<li><a href="${pageContext.servletContext.contextPath}/cart/insert?proSeq=${list.proSeq}"><i class="fa fa-shopping-cart"></i>장바구니</a></li>
 														</c:otherwise>
 													</c:choose>
 									

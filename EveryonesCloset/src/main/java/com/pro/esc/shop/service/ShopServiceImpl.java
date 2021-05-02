@@ -45,6 +45,12 @@ public class ShopServiceImpl implements ShopService {
 		// TODO Auto-generated method stub
 		shopDao.updateStock(proSeq);
 	}
+
+	@Override
+	public List<ProductDTO> selectTOP5() throws Exception {
+		// TODO Auto-generated method stub
+		return shopDao.selectTOP5();
+	}
 	
 	
 }

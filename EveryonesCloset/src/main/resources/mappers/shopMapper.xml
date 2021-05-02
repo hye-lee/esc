@@ -110,12 +110,19 @@
 
 	</select>
 	
-	<!-- 구입시 재고 업데이트 -->
+	<!-- 구입시 재고,구입 수 업데이트 -->
 	<update id="updateStock" parameterType="int">
 		UPDATE product
-		SET proStock=proStock-1
+		SET proStock=proStock-1, proSellCount=proSellCount+1
 		WHERE proSeq=#{proSeq}
 	</update>
 	
+	<select id="selectTOP5" resultType="Product">
+		SELECT *
+		FROM product
+		WHERE proStock!=0
+		ORDER BY proSellCount DESC
+		LIMIT 5
+	</select>
 	
 </mapper>
