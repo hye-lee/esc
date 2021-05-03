@@ -39,4 +39,34 @@
 	
 	</select>
 	
+	<select id="selectMyOrder" parameterType="Order" resultType="Order">
+		SELECT *
+		FROM `order`
+		WHERE userID=#{userID}
+		ORDER BY ordDate DESC
+		limit #{startIndex}, #{cntPerPage}
+	</select>
+	
+	<select id="countMyOrder" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM `order`
+		WHERE userID=#{userID}
+	
+	</select>
+	
+	<select id="selectOrderDetail" parameterType="map" resultType="MyOrder">
+		SELECT c.proSeq, c.proBrand, c.proName, c.proImgPath, c.proPrice
+		FROM order_product a
+			INNER JOIN `order` b ON a.ordSeq=b.ordSeq
+			INNER JOIN product c ON a.proSeq=c.proSeq
+		WHERE b.userID=#{userID}
+		AND b.ordSeq=#{ordSeq}
+	</select>
+	
+	<select id="selectOrderDetailRec" parameterType="String" resultType="Order">
+		SELECT *
+		FROM `order`
+		WHERE ordSeq=#{ordSeq}
+	
+	</select>
 </mapper>

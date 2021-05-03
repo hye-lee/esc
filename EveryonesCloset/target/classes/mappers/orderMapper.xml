@@ -85,7 +85,6 @@
 	<insert id="insertOrderPro" parameterType="OrderProduct">
 		INSERT INTO order_product(ordSeq,proSeq)
 			 SELECT #{ordSeq},#{proSeq}
-			 FROM cart
 	</insert>
 
 

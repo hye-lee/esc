@@ -29,6 +29,23 @@ public class OrderDTO {
 	private String recExAddr;
 	private String ordPayment;
 	
+	//페이징
+    private int startIndex;
+    private int cntPerPage;
+	
+	
+	public int getStartIndex() {
+		return startIndex;
+	}
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+	public int getCntPerPage() {
+		return cntPerPage;
+	}
+	public void setCntPerPage(int cntPerPage) {
+		this.cntPerPage = cntPerPage;
+	}
 	public String getOrdPayment() {
 		return ordPayment;
 	}

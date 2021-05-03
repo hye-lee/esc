@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.pro.esc.inquiry.dao.InquiryDTO;
 import com.pro.esc.login.dao.UserDTO;
+import com.pro.esc.order.dao.OrderDTO;
 
 public interface MypageDao {
 	UserDTO selectUserOne(String userID)throws Exception;
@@ -16,4 +17,12 @@ public interface MypageDao {
 	List<InquiryDTO> selectMyInquiry(InquiryDTO inquiryDTO)throws Exception;
 	
 	int countMyInquiry(String userID)throws Exception;
+	
+	List<OrderDTO> selectMyOrder(OrderDTO orderDTO) throws Exception; 
+	
+	int countMyOrder(String userID) throws Exception;
+	
+	List<MyOrderDTO> selectOrderDetail(HashMap<String, String> map)throws Exception;
+	
+	OrderDTO selectOrderDetailRec(String ordSeq)throws Exception;
 }

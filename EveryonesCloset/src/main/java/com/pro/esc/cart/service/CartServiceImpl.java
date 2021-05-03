@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pro.esc.cart.dao.CartDTO;
 import com.pro.esc.cart.dao.CartDao;
@@ -15,6 +17,7 @@ public class CartServiceImpl implements CartService{
 	private CartDao cartDao;
 	
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public void insertCart(CartDTO cartDTO) throws Exception {
 		// TODO Auto-generated method stub
 		cartDao.insertCart(cartDTO);
@@ -27,6 +30,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public int deleteCartOne(CartDTO cartDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return cartDao.deleteCartOne(cartDTO);

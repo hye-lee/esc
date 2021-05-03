@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pro.esc.shop.dao.ProductDTO;
 import com.pro.esc.shop.dao.ShopDao;
@@ -16,6 +18,7 @@ public class ShopServiceImpl implements ShopService {
 	private ShopDao shopDao;
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public void insertProduct(ProductDTO productDTO) throws Exception {
 		// TODO Auto-generated method stub
 		shopDao.insertProduct(productDTO);
@@ -41,6 +44,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public void updateStock(int proSeq) throws Exception {
 		// TODO Auto-generated method stub
 		shopDao.updateStock(proSeq);

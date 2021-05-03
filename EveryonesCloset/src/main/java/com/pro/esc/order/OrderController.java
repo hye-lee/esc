@@ -40,11 +40,9 @@ public class OrderController {
 	@Autowired
 	private CartService cartService;
 	
-	@RequestMapping(value="/orderDetail") //@RequestParam("choosePro")String[] cartSeq
-	public String sendOrder(HttpServletRequest req, HttpSession session, ModelMap map) throws Exception {
-		
-		String[] cartSeq=(String[]) req.getAttribute("choosePro");
-		
+	@RequestMapping(value="/orderDetail") //
+	public String sendOrder(@RequestParam("choosePro")String[] cartSeq, HttpServletRequest req, HttpSession session, ModelMap map) throws Exception {
+				
 		System.out.println("cartSeq::"+cartSeq.length);
 		
 		List<CartDTO> list=new ArrayList<CartDTO>();
@@ -98,6 +96,10 @@ public class OrderController {
 		int count=0;
 		String userID=(String)session.getAttribute("login");
 		orderDTO.setUserID(userID);
+		
+		System.out.println("proSeq.length::"+ proSeq.length);
+		System.out.println("cartSeq.length::"+ cartSeq.length);
+		
 		for(int i=0;i<proSeq.length;i++)
 		{
 			HashMap<String,Object> map=new HashMap<String, Object>();
