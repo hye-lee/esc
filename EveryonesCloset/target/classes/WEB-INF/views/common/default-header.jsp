@@ -63,16 +63,22 @@
 								<c:if test="${sessionScope.login != null}" >
 								<li><a href=""><i class="glyphicon glyphicon-heart"></i><c:out value="${sessionScope.login}"/>님 환영합니다!</a></li>
 								</c:if>
-								
-								<li><a href="${pageContext.servletContext.contextPath}/cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								
-								<c:if test="${sessionScope.login == null}" >
-								<li><a href="${pageContext.servletContext.contextPath}/login"><i class="fa fa-lock"></i> Login</a></li>
-								</c:if>
-								<c:if test="${sessionScope.login != null}" >
-								<li><a href="${pageContext.servletContext.contextPath}/mypage"><i class="fa fa-user"></i> Account</a></li>
-								<li><a href="${pageContext.servletContext.contextPath}/logout"><i class="fa fa-unlock"></i> Logout</a></li>
-								</c:if>
+								<c:choose>
+									<c:when test="${sessionScope.admin==null }">
+										<li><a href="${pageContext.servletContext.contextPath}/cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+										<c:if test="${sessionScope.login == null}" >
+										<li><a href="${pageContext.servletContext.contextPath}/login"><i class="fa fa-lock"></i> Login</a></li>
+										</c:if>
+										<c:if test="${sessionScope.login != null}" >
+											<li><a href="${pageContext.servletContext.contextPath}/mypage"><i class="fa fa-user"></i> Account</a></li>
+											<li><a href="${pageContext.servletContext.contextPath}/logout"><i class="fa fa-unlock"></i> Logout</a></li>
+										</c:if>
+									</c:when>
+									<c:otherwise>
+										<li><a href="${pageContext.servletContext.contextPath}/admin"><i class="fa fa-lock"></i> admin</a></li>
+									</c:otherwise>
+								</c:choose>
+
 							</ul>
 						</div>
 					</div>

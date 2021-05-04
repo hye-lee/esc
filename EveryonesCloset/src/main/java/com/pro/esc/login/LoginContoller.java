@@ -48,6 +48,13 @@ public class LoginContoller {
         {
         	System.out.println(loginService.login(userDTO));
         	session.setAttribute("login", userID);
+        	String admin="";
+        	admin=loginService.selectadmin(userDTO);
+        	if(admin!=null) {
+        		session.setAttribute("admin", "Y");
+        		System.out.println("admin::Y");
+        	}
+        	
         	return "success";
         }
 		

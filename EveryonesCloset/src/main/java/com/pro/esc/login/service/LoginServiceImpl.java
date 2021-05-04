@@ -41,4 +41,10 @@ public class LoginServiceImpl implements LoginService{
 		return loginDao.updatePw(map);
 	}
 
+	@Override
+	public String selectadmin(UserDTO userDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return loginDao.selectadmin(userDTO);
+	}
+
 }

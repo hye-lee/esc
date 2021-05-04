@@ -37,4 +37,10 @@ public class LoginDaoImpl implements LoginDao{
 		return sqlSession.getMapper(LoginDao.class).updatePw(map);
 	}
 
+	@Override
+	public String selectadmin(UserDTO userDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(LoginDao.class).selectadmin(userDTO);
+	}
+
 }

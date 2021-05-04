@@ -16,7 +16,15 @@ public class UserDTO {
 	private String userBirth;
 	
 	private String userAddrDetail;
+	private String isAdmin;
+	
 
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	public String getUserAddrDetail() {
 		return userAddrDetail;
 	}

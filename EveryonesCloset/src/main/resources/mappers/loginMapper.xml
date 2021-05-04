@@ -18,6 +18,13 @@
 		</trim>
 	</select>
 	
+	<select id="selectadmin" parameterType="User" resultType="String">
+		SELECT isAdmin
+		FROM user
+		WHERE userID=#{userID}
+		AND userPw=#{userPw}
+	</select>
+	
 	<select id="findId" parameterType="map" resultType="String">
 		SELECT userID
 		FROM user

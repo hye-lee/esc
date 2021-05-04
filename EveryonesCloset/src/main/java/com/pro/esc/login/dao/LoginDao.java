@@ -11,5 +11,7 @@ public interface LoginDao {
 	int findPw(HashMap<String,String> map)throws Exception;
 	
 	int updatePw(HashMap<String,String> map)throws Exception;
+	
+	String selectadmin(UserDTO userDTO)throws Exception;
 
 }
