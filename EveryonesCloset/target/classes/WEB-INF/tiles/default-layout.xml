@@ -17,7 +17,7 @@
 	</definition>
 	
 	<!--  ajax를 위한 tiles : blocks로 전달함. -->
-	<definition name="block-tiles" template="/WEB-INF/views/common/default-content.jsp">
+	<definition name="block-tiles" template="/WEB-INF/views/common/default-block.jsp">
 	  	<put-attribute name="content"   	value="" />
 	</definition>
 	

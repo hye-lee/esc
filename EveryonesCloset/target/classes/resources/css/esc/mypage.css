@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+
+<style>
+	.mypage_container {
+	width: 70%;
+	margin: 0 auto;
+	font-size: 1em;
+	padding-bottom: 5%;
+	padding-top: 3%;
+}
+
+	.mypage_funcion {
+		margin: 5% 0;
+		font-family:'Noto+Sans+KR', sans-serif;
+	}
+	
+	.mypage_title {
+		text-align: center;
+		color: #696763;
+		font-family: 'Quicksand', sans-serif;
+		font-size: 5em;
+		font-weight: 300;
+		padding: 3% 0 1% 0;
+	}
+	
+	.info_container {
+		text-align: center;
+		height: 120px;
+		border: 1px solid;
+		border-radius: 5px;
+		padding: 3% 1%;
+		margin: 3% 1%;
+		color: gray;
+	}
+	
+	.glyphicon_padding {
+		padding-right: 5%;
+	}
+	
+	.info_container:hover {
+		color: orange;
+	}
+	
+	.text_mypage_small{
+	text-align:center;
+	color: #696763;
+  	font-family: 'Quicksand', sans-serif;
+ 	 font-size: 1.5em;
+ 	 font-weight: 300;
+}
+	.btn-center{
+		position: absolute; 
+		left: 0;
+		right: 0; 
+		margin:0 auto;
+	}
+
+
+</style>
