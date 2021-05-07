@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pro.esc.admin.dao.AdminDao;
 import com.pro.esc.login.dao.UserDTO;
+import com.pro.esc.shop.dao.ProductDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -27,6 +28,12 @@ public class AdminServiceImpl implements AdminService {
 	public int updateUserStat(String userID) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDao.updateUserStat(userID);
+	}
+
+	@Override
+	public List<ProductDTO> selectAllProduct() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.selectAllProduct();
 	}
 	
 	

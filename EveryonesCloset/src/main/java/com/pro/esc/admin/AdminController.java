@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pro.esc.admin.service.AdminService;
 import com.pro.esc.login.dao.UserDTO;
+import com.pro.esc.shop.dao.ProductDTO;
 
 @Controller
 public class AdminController {
@@ -52,8 +53,13 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/product")
-	public String adminProduct() {
+	public String adminProduct(ModelMap model) throws Exception {
 		System.out.println("product페이지");
+		
+		/*List<ProductDTO> list=adminService.selectAllProduct();	
+		
+		model.addAttribute("list",list);*/
+		
 		return"admin/adminPro.blocks";
 	}
 	

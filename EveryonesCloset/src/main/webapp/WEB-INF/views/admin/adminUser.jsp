@@ -77,7 +77,7 @@
 	                        		<td><c:out value="${list.userPostCode }"/></td>
 	                        		<td><c:out value="${list.userStat }"/></td>
 	                        		<td><c:out value="${list.userRegDate }"/></td>
-	                        		<td><button type="button" class="close" id="deleteUser+${list.status}" aria-label="Close"><span aria-hidden="true" style="color:red; "><h2>&times;</h2></span></button></td>
+	                        		<td><button type="button" class="close" id="deleteUser" aria-label="Close"><span aria-hidden="true" style="color:red; "><h2>&times;</h2></span></button></td>
 	                        	</tr>
 	                        	
 	                        </c:forEach>

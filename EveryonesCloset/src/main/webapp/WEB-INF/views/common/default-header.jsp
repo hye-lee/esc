@@ -76,6 +76,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a href="${pageContext.servletContext.contextPath}/admin"><i class="fa fa-lock"></i> admin</a></li>
+										<li><a href="${pageContext.servletContext.contextPath}/logout"><i class="fa fa-unlock"></i> Logout</a></li>
 									</c:otherwise>
 								</c:choose>
 

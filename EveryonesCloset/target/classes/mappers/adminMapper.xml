@@ -18,4 +18,9 @@
 		SET userStat='N'
 		WHERE userID=#{userID}
 	</update>
+	
+	<select id="selectAllProduct" resultType="Product">
+		SELECT *
+		FROM product
+	</select>
 </mapper>

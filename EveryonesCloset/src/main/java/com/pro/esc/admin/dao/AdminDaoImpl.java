@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pro.esc.login.dao.UserDTO;
+import com.pro.esc.shop.dao.ProductDTO;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
@@ -24,6 +25,12 @@ public class AdminDaoImpl implements AdminDao{
 	public int updateUserStat(String userID) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(AdminDao.class).updateUserStat(userID);
+	}
+
+	@Override
+	public List<ProductDTO> selectAllProduct() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AdminDao.class).selectAllProduct();
 	}
 	
 	
