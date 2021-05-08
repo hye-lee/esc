@@ -80,6 +80,7 @@ public class AdminController {
 	         	case 6:proCateName="Shoes"; break;
 	         	case 7:proCateName="Bags"; break;
 	         }
+	         
 	         int sizeSeq=list.get(i).getSizeSeq();
 	         String sizeName="";
 	         switch(sizeSeq) {

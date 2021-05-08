@@ -9,7 +9,7 @@ public interface ShopService {
 	
 	void insertProduct(ProductDTO productDTO) throws Exception;
 	
-	List<ProductDTO> selectProList(HashMap<String, String> map) throws Exception;
+	List<ProductDTO> selectProList(HashMap<String, Object> map) throws Exception;
 	
 	List<ProductDTO> selectProListALL()throws Exception;
 	
@@ -18,4 +18,6 @@ public interface ShopService {
 	void updateStock(int proSeq)throws Exception;
 	
 	List<ProductDTO> selectTOP5()throws Exception;
+	
+	int productCount(HashMap<String,Object> map) throws Exception;
 }

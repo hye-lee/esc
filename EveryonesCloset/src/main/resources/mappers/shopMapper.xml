@@ -93,6 +93,7 @@
 			</if>
 		</trim>
 		ORDER BY proSeq DESC
+		LIMIT #{startIndex}, #{cntPerPage}
 	</select>
 	
 	<!-- 모든상품 리스트 출력 ver.2-->
@@ -123,6 +124,16 @@
 		WHERE proStock!=0
 		ORDER BY proSellCount DESC
 		LIMIT 5
+	</select>
+	
+	<select id="productCount" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM product
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="proCateSeq!=0">
+				AND proCateSeq=#{proCateSeq}
+			</if>
+		</trim>
 	</select>
 	
 </mapper>

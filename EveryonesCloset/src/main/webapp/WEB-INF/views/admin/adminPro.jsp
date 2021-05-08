@@ -6,6 +6,16 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
+<script type="text/javascript">
+
+	$(function(){
+		$('#addProduct').click(function(){
+			document.location.href="${pageContext.servletContext.contextPath}/addProduct";
+		});
+	});
+
+</script>
+
 <style>
 	.table_center th{
 	text-align: center;
@@ -13,6 +23,7 @@
 </style>
 
 <div>
+<button type="button" style="float:right;" class="btn btn-warning" id="addProduct" > 상품 추가하기</button>
 <table class="table table-hover">
 		        <colgroup>
                             <col width='10%'/>   <%-- 사진 --%>

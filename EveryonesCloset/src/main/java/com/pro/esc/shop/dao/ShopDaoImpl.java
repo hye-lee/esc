@@ -21,7 +21,7 @@ public class ShopDaoImpl implements ShopDao {
 	}
 
 	@Override
-	public List<ProductDTO> selectProList(HashMap<String,String> map) throws Exception {
+	public List<ProductDTO> selectProList(HashMap<String,Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(ShopDao.class).selectProList(map);
 	}
@@ -49,6 +49,12 @@ public class ShopDaoImpl implements ShopDao {
 	public List<ProductDTO> selectTOP5() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(ShopDao.class).selectTOP5();
+	}
+
+	@Override
+	public int productCount(HashMap<String,Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(ShopDao.class).productCount(map);
 	}
 
 }

@@ -3,11 +3,13 @@ package com.pro.esc.shop.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.pro.esc.inquiry.dao.InquiryDTO;
+
 public interface ShopDao {
 
 	void insertProduct(ProductDTO productDTO) throws Exception;
 	
-	List<ProductDTO> selectProList(HashMap<String,String> map)throws Exception ;
+	List<ProductDTO> selectProList(HashMap<String,Object> map)throws Exception ;
 
 	List<ProductDTO> selectProListALL() throws Exception;
 	
@@ -16,4 +18,6 @@ public interface ShopDao {
 	void updateStock(int proSeq)throws Exception;
 	
 	List<ProductDTO> selectTOP5() throws Exception;
+	
+	int productCount(HashMap<String,Object> map) throws Exception;
 }

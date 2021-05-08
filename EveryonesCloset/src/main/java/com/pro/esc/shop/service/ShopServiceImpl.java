@@ -26,7 +26,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<ProductDTO> selectProList(HashMap<String, String> map) throws Exception {
+	public List<ProductDTO> selectProList(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return shopDao.selectProList(map);
 	}
@@ -54,6 +54,12 @@ public class ShopServiceImpl implements ShopService {
 	public List<ProductDTO> selectTOP5() throws Exception {
 		// TODO Auto-generated method stub
 		return shopDao.selectTOP5();
+	}
+
+	@Override
+	public int productCount(HashMap<String,Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return shopDao.productCount(map);
 	}
 	
 	

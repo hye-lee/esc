@@ -105,12 +105,7 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li style="padding-left:30px"><a href="${pageContext.servletContext.contextPath}/" class="active">Home</a></li>
 								<li class="dropdown" ><a  href="${pageContext.servletContext.contextPath}/shop?proCateSeq=0">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu pull-left">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
-                                    </ul>
+                                   
                                 </li> 
                                 <li><a href="${pageContext.servletContext.contextPath}/inquiry">Inquiry</a></li>
 								<li><a href="contact-us.html">Sharing</a></li>

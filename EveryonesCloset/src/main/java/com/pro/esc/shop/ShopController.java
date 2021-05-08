@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
+import com.pro.esc.inquiry.dao.PageDto;
 import com.pro.esc.shop.dao.ProductDTO;
 import com.pro.esc.shop.service.ShopService;
 
@@ -27,13 +28,27 @@ public class ShopController {
 	
 	//상품리스트 첫화면
 	@RequestMapping(value="/shop")
-	public String shop(@RequestParam("proCateSeq")String proCateSeq, ModelMap model) throws Exception {
+	public String shop(@RequestParam("proCateSeq")String proCateSeq, 
+					   @RequestParam(defaultValue="1") int page, ModelMap model) throws Exception {
 		
-		HashMap<String,String> map=new HashMap<String, String>();
+		HashMap<String,Object> map=new HashMap<String, Object>();
 		map.put("proCateSeq", proCateSeq);
+		System.out.println("proCateSeq"+proCateSeq);
+		
+		int count= shopService.productCount(map);
+		
+		System.out.println("count::"+ count);
+		
+		PageDto pageDto=new PageDto(count,page);
+		System.out.println("pageDto.getStartInx()::"+pageDto.getStartInx());
+		map.put("startIndex",pageDto.getStartInx());
+		map.put("cntPerPage",pageDto.getRowCount());
+		
 		List<ProductDTO> list=shopService.selectProList(map);
-
-		if(list!=null)
+		
+		
+		
+		if(!list.isEmpty())
 		{
 			String proImgPath = "";
 			
@@ -49,29 +64,40 @@ public class ShopController {
 		         
 		         list.get(i).setProImgPath(proImgPath);
 		      }
-		    model.addAttribute("list",list);
 		    
-			if(Integer.parseInt(proCateSeq)==0) {
-				model.addAttribute("title","ALL");
-				
-			}else {
-				model.addAttribute("title",list.get(1).getProCateName());
-				
-			}
+		    
+		    
+		    	if(Integer.parseInt(proCateSeq)==0) {
+					model.addAttribute("title","ALL");
+					
+				}else {
+					model.addAttribute("title",list.get(1).getProCateName());
+					
+				}
+		    	model.addAttribute("list",list);
+		    	model.addAttribute("count",count);
+		    	model.addAttribute("pageDto", pageDto);
+		    
+			
 		}
 		return "shop/shopList.tiles";
 		
 	}
 	
-	//ajax json방식으로 상품리스트 받기
+	/*//ajax json방식으로 상품리스트 받기
 	@RequestMapping(value="proList",produces="text/json; charset=UTF-8")
 	@ResponseBody
 	public String shopList(HttpServletRequest req, HttpServletResponse res,
 						@RequestParam HashMap<String,String> map)throws Exception {
 		
-		int proCateSeq=Integer.parseInt(req.getParameter("proCateSeq"));
+		String cateSeq=req.getParameter("proCateSeq");
 		
-		System.out.println("proCateSeq: "+proCateSeq);
+		System.out.println("proCateSeq: "+cateSeq);
+		
+		if(cateSeq=="" ||cateSeq==null) {
+			cateSeq="0";
+		}
+		int proCateSeq=Integer.parseInt(cateSeq);
 		
 		List<ProductDTO> list=shopService.selectProList(map);
 		String proImgPath = "";
@@ -97,7 +123,7 @@ public class ShopController {
 		return productList;
 		
 	}
-	
+	*/
 
 	
 	
