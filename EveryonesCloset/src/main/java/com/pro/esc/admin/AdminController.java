@@ -56,9 +56,52 @@ public class AdminController {
 	public String adminProduct(ModelMap model) throws Exception {
 		System.out.println("product페이지");
 		
-		/*List<ProductDTO> list=adminService.selectAllProduct();	
+		List<ProductDTO> list=adminService.selectAllProduct();	
+	
+		String proImgPath = "";
 		
-		model.addAttribute("list",list);*/
+	    for(int i=0;i<list.size();i++)
+	      {
+	        int pathStartIndex=list.get(i).getProImgPath().indexOf("resources");
+	         System.out.println("pathStartIndex: "+pathStartIndex);
+	         if(pathStartIndex > -1){
+	        	 proImgPath = list.get(i).getProImgPath().substring(pathStartIndex);
+	         } else {
+	        	 proImgPath = "resources/images/shop/product12.jpg";
+	         }
+	         int proCateSeq=list.get(i).getProCateSeq();
+	         String proCateName="";
+	         switch(proCateSeq) {
+	         	case 1:proCateName="Outer"; break;
+	         	case 2:proCateName="Top"; break;
+	         	case 3:proCateName="Dress"; break;
+	         	case 4:proCateName="Pants"; break;
+	         	case 5:proCateName="Skirt"; break;
+	         	case 6:proCateName="Shoes"; break;
+	         	case 7:proCateName="Bags"; break;
+	         }
+	         int sizeSeq=list.get(i).getSizeSeq();
+	         String sizeName="";
+	         switch(sizeSeq) {
+	         	case 1:sizeName="XS"; break;
+	         	case 2:sizeName="S"; break;
+	         	case 3:sizeName="M"; break;
+	         	case 4:sizeName="L"; break;
+	         	case 5:sizeName="XL"; break;
+	         	case 6:sizeName="XXL"; break;
+	         	
+	         }
+	         
+	         
+	         list.get(i).setSizeName(sizeName);
+	         list.get(i).setProCateName(proCateName);
+	         list.get(i).setProImgPath(proImgPath);
+	      }
+	    
+	    
+		
+		
+		model.addAttribute("list",list);
 		
 		return"admin/adminPro.blocks";
 	}

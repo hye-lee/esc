@@ -39,21 +39,21 @@
                         </thead>
                         
                          <tbody class="table_center">
-	                      <%--   <c:forEach var="list" items="${list}" varStatus="status">
-	                        	<input type="hidden" id="userID" value="${list.proSeq}">
+	                         <c:forEach var="list" items="${list}" varStatus="status">
+	                        	
 	                        	<tr>
-	                        		<td><img src="${pageContext.servletContext.contextPath}/${list.proImgPath}" style= " object-fit:cover" /></td>
-	                        		<td><c:out value="${list.proSeq}"></c:out></td>
-	                        		<td><c:out value="${list.proCateSeq }"/></td>
-	                        		<td><c:out value="${list.sizeSeq }"/></td>
-	                        		<td><c:out value="${list.proBrand }"/></td>
-	                        		<td><c:out value="${list.proName }"/></td>
-	                        		<td><c:out value="${list.proStock }"/></td>
-	                        		<td><c:out value="${list.proSellCount }"/></td>
+	                        		<td><img src="${pageContext.servletContext.contextPath}/${list.proImgPath}" style= "height:100px; object-fit:cover;" /></td>
+	                        		<td><h3><c:out value="${list.proSeq}"></c:out></h3></td>
+	                        		<td><h3><c:out value="${list.proCateName }"/></h3></td>
+	                        		<td><h3><c:out value="${list.sizeName }"/></h3></td>
+	                        		<td><h3><c:out value="${list.proBrand }"/></h3></td>
+	                        		<td><h3><c:out value="${list.proName }"/></h3></td>
+	                        		<td><h3><c:out value="${list.proStock }"/></h3></td>
+	                        		<td><h3><c:out value="${list.proSellCount }"/></h3></td>
 	                        		
 	                        	</tr>
 	                        	
-	                        </c:forEach> --%>
+	                        </c:forEach> 
                   
                         </tbody> 
                         

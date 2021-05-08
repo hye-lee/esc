@@ -15,6 +15,15 @@ public class ProductDTO {
 	private char proStat;
 	private String proImgPath;
 	private String proCateName;
+	private String sizeName;
+	
+	public String getSizeName() {
+		return sizeName;
+	}
+	public void setSizeName(String sizeName) {
+		this.sizeName = sizeName;
+	}
+
 	
 	public String getProCateName() {
 		return proCateName;
