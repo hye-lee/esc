@@ -23,4 +23,18 @@
 		SELECT *
 		FROM product
 	</select>
+	
+	
+	<select id="countInquiry"  resultType="Integer">
+		SELECT COUNT(*)
+		FROM inquiry
+	</select>
+	
+	<select id="selectAllInquiry" parameterType="map" resultType="Inquiry">
+		SELECT *
+		FROM inquiry
+		WHERE inquiryStat='Y'
+		ORDER BY inquiryParent DESC, inquirySeqOrd ASC
+        limit #{startIndex}, #{cntPerPage}
+	</select>
 </mapper>

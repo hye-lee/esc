@@ -1,11 +1,13 @@
 package com.pro.esc.admin.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pro.esc.inquiry.dao.InquiryDTO;
 import com.pro.esc.login.dao.UserDTO;
 import com.pro.esc.shop.dao.ProductDTO;
 
@@ -31,6 +33,18 @@ public class AdminDaoImpl implements AdminDao{
 	public List<ProductDTO> selectAllProduct() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(AdminDao.class).selectAllProduct();
+	}
+
+	@Override
+	public int countInquiry() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AdminDao.class).countInquiry();
+	}
+
+	@Override
+	public List<InquiryDTO> selectAllInquiry(HashMap<String,Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AdminDao.class).selectAllInquiry(map);
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.pro.esc.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pro.esc.admin.dao.AdminDao;
+import com.pro.esc.inquiry.dao.InquiryDTO;
 import com.pro.esc.login.dao.UserDTO;
 import com.pro.esc.shop.dao.ProductDTO;
 
@@ -34,6 +36,18 @@ public class AdminServiceImpl implements AdminService {
 	public List<ProductDTO> selectAllProduct() throws Exception {
 		// TODO Auto-generated method stub
 		return adminDao.selectAllProduct();
+	}
+
+	@Override
+	public int countInquiry() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.countInquiry();
+	}
+
+	@Override
+	public List<InquiryDTO> selectAllInquiry(HashMap<String,Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.selectAllInquiry(map);
 	}
 	
 	

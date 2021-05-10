@@ -1,5 +1,6 @@
 package com.pro.esc.admin;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pro.esc.admin.service.AdminService;
+import com.pro.esc.inquiry.dao.InquiryDTO;
+import com.pro.esc.inquiry.dao.PageDto;
 import com.pro.esc.login.dao.UserDTO;
 import com.pro.esc.shop.dao.ProductDTO;
 
@@ -114,8 +117,22 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/inquiry")
-	public String adminInquiry() {
+	public String adminInquiry(@RequestParam(defaultValue="1") int page, ModelMap model) throws Exception {
 		System.out.println("inquiry페이지");
+		
+		int count=adminService.countInquiry();
+		PageDto pageDto=new PageDto(count,page);
+		//페이징
+		HashMap<String,Object> map=new HashMap<String,Object> ();
+		map.put("startIndex",pageDto.getStartInx());
+		map.put("cntPerPage",pageDto.getRowCount());
+		
+		
+		List<InquiryDTO> list=adminService.selectAllInquiry(map);
+		model.addAttribute("list",list);
+		model.addAttribute("count", count);
+		model.addAttribute("pageDto", pageDto);
+
 		return"admin/adminInq.blocks";
 	}
 
