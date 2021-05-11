@@ -16,6 +16,7 @@ import com.pro.esc.admin.service.AdminService;
 import com.pro.esc.inquiry.dao.InquiryDTO;
 import com.pro.esc.inquiry.dao.PageDto;
 import com.pro.esc.login.dao.UserDTO;
+import com.pro.esc.order.dao.OrderDTO;
 import com.pro.esc.shop.dao.ProductDTO;
 
 @Controller
@@ -92,18 +93,13 @@ public class AdminController {
 	         	case 3:sizeName="M"; break;
 	         	case 4:sizeName="L"; break;
 	         	case 5:sizeName="XL"; break;
-	         	case 6:sizeName="XXL"; break;
-	         	
+	         	case 6:sizeName="XXL"; break;   	
 	         }
-	         
-	         
+ 
 	         list.get(i).setSizeName(sizeName);
 	         list.get(i).setProCateName(proCateName);
 	         list.get(i).setProImgPath(proImgPath);
 	      }
-	    
-	    
-		
 		
 		model.addAttribute("list",list);
 		
@@ -111,8 +107,13 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/order")
-	public String adminOrder() {
+	public String adminOrder(ModelMap model) throws Exception {
 		System.out.println("order페이지");
+		
+		List<OrderDTO> list=adminService.selectAllOrder();
+		
+		model.addAttribute("list",list);
+		
 		return"admin/adminOrd.blocks";
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.pro.esc.inquiry.dao.InquiryDTO;
 import com.pro.esc.login.dao.UserDTO;
+import com.pro.esc.order.dao.OrderDTO;
 import com.pro.esc.shop.dao.ProductDTO;
 
 public interface AdminService {
@@ -18,5 +19,9 @@ public interface AdminService {
 	int countInquiry()throws Exception;
 	
 	List<InquiryDTO> selectAllInquiry(HashMap<String,Object> map)throws Exception;
+	
+	int countOrder() throws Exception;
+	
+	List<OrderDTO> selectAllOrder()throws Exception;
 
 }

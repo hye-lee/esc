@@ -37,4 +37,16 @@
 		ORDER BY inquiryParent DESC, inquirySeqOrd ASC
         limit #{startIndex}, #{cntPerPage}
 	</select>
+	
+	
+	<select id="countOrder"  resultType="Integer">
+		SELECT COUNT(*)
+		FROM `order`
+	</select>
+	
+	<select id="selectAllOrder" resultType="Order">
+		SELECT *
+		FROM `order`
+		ORDER BY ordSeq DESC
+	</select>
 </mapper>

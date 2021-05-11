@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pro.esc.admin.dao.AdminDao;
 import com.pro.esc.inquiry.dao.InquiryDTO;
 import com.pro.esc.login.dao.UserDTO;
+import com.pro.esc.order.dao.OrderDTO;
 import com.pro.esc.shop.dao.ProductDTO;
 
 @Service
@@ -48,6 +49,18 @@ public class AdminServiceImpl implements AdminService {
 	public List<InquiryDTO> selectAllInquiry(HashMap<String,Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDao.selectAllInquiry(map);
+	}
+
+	@Override
+	public int countOrder() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.countOrder();
+	}
+
+	@Override
+	public List<OrderDTO> selectAllOrder() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.selectAllOrder();
 	}
 	
 	
