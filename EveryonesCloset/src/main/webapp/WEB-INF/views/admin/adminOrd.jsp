@@ -51,11 +51,7 @@
 			</c:url>
 
 			<tr class="order_body">
-				<td>
-						<a href="${link}" style="color: gray;">[<c:out
-								value="${list.ordSeq}" /> ]
-						</a>
-					</td>
+				<td>${list.ordSeq}</td>
 				<td>${list.ordDate}</td>
 				<td><fmt:formatNumber value="${list.ordTotal}" pattern="#,###,###" />원</td>
 				<td>${list.ordPayment }</td>
