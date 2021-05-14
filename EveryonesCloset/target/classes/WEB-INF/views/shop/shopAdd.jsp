@@ -29,6 +29,7 @@
 
 
 <form method="post" action="addGoods" enctype="multipart/form-data">
+	<div class="col-sm-6">
 	상품이름: <input type="text" name="proName">
 	상품가격:<input type="text" name="proPrice">
 	상품재고: <input type="text" name="proStock">
@@ -38,4 +39,5 @@
 	상품이미지: <input type="file"  class="dropify" name="file"/>
 	<br/>
   			  <input type="submit" value="저장">
+  			  </div>
 </form>

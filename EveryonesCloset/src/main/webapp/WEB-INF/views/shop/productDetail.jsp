@@ -21,9 +21,8 @@
 	<div class="row">
 		<div class="col-sm-3">
 			<img src="${pageContext.servletContext.contextPath }/${pro.proImgPath}" style="width:60%;">
-
 		</div>
-		<div class="col-sm-6">
+		<div class="col-sm-3">
 			상품이름:
 			<h2>${pro.proName}</h2>
 			상품가격:
@@ -36,5 +35,8 @@
 			<h2>${pro.proCateSeq}</h2>
 			상품사이즈:
 			<h2>${pro.sizeSeq}</h2></div>
+			<div class="col-sm-3">
+			
+			</div>
 	</div>
 </div>
