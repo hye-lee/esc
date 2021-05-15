@@ -141,7 +141,6 @@
 </style>
 
 <div class="shop_width">
-
 	<hr>
 	<h2 class="text_shop">Shop</h2>
 	<div class="row">
