@@ -93,7 +93,7 @@
     		 seqOrd: <c:out value="${info.inquirySeqOrd}"/>
     		 indent: <c:out value="${info.inquiryIndent}"/> --%>
     		 <div style="float:right;">
-    		 <c:if test="${sessionScope.login!=null}">
+    		 <c:if test="${sessionScope.login!=null && sessionScope.admin!=null}">
     		 	<button type="button" class="btn btn-info" id="reWrite">답글</button>
     		 </c:if>
     		 <c:if test="${info.userID == sessionScope.login}">

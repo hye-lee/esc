@@ -57,10 +57,18 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/product")
-	public String adminProduct(ModelMap model) throws Exception {
+	public String adminProduct(@RequestParam(defaultValue="1") int page, ModelMap model) throws Exception {
 		System.out.println("product페이지");
 		
-		List<ProductDTO> list=adminService.selectAllProduct();	
+		int count=adminService.countProduct();
+		
+		PageDto pageDto=new PageDto(count,page);
+		
+		HashMap<String,Object> map=new HashMap<String,Object> ();
+		map.put("startIndex",pageDto.getStartInx());
+		map.put("cntPerPage",pageDto.getRowCount());
+		
+		List<ProductDTO> list=adminService.selectAllProduct(map);	
 	
 		String proImgPath = "";
 		
@@ -102,6 +110,8 @@ public class AdminController {
 	      }
 		
 		model.addAttribute("list",list);
+		model.addAttribute("count", count);
+		model.addAttribute("pageDto", pageDto);
 		
 		return"admin/adminPro.blocks";
 	}

@@ -34,9 +34,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<ProductDTO> selectAllProduct() throws Exception {
+	public List<ProductDTO> selectAllProduct(HashMap<String,Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return adminDao.selectAllProduct();
+		return adminDao.selectAllProduct(map);
 	}
 
 	@Override
@@ -61,6 +61,12 @@ public class AdminServiceImpl implements AdminService {
 	public List<OrderDTO> selectAllOrder() throws Exception {
 		// TODO Auto-generated method stub
 		return adminDao.selectAllOrder();
+	}
+
+	@Override
+	public int countProduct() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.countProduct();
 	}
 	
 	

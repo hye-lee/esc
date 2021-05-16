@@ -19,11 +19,17 @@
 		WHERE userID=#{userID}
 	</update>
 	
-	<select id="selectAllProduct" resultType="Product">
+	<select id="selectAllProduct" parameterType="map" resultType="Product">
 		SELECT *
 		FROM product
+		limit #{startIndex}, #{cntPerPage}
 	</select>
 	
+	
+	<select id="countProduct"  resultType="Integer">
+		SELECT COUNT(*)
+		FROM product
+	</select>
 	
 	<select id="countInquiry"  resultType="Integer">
 		SELECT COUNT(*)

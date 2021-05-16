@@ -31,9 +31,9 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public List<ProductDTO> selectAllProduct() throws Exception {
+	public List<ProductDTO> selectAllProduct(HashMap<String,Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.getMapper(AdminDao.class).selectAllProduct();
+		return sqlSession.getMapper(AdminDao.class).selectAllProduct(map);
 	}
 
 	@Override
@@ -58,6 +58,12 @@ public class AdminDaoImpl implements AdminDao{
 	public List<OrderDTO> selectAllOrder() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(AdminDao.class).selectAllOrder();
+	}
+
+	@Override
+	public int countProduct() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AdminDao.class).countProduct();
 	}
 	
 	

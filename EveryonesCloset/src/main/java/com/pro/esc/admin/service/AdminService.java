@@ -14,7 +14,9 @@ public interface AdminService {
 	
 	int updateUserStat(String userID)throws Exception;
 	
-	List<ProductDTO> selectAllProduct()throws Exception;
+	List<ProductDTO> selectAllProduct(HashMap<String,Object> map)throws Exception;
+	
+	int countProduct() throws Exception;
 	
 	int countInquiry()throws Exception;
 	
