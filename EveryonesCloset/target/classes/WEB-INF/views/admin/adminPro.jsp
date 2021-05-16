@@ -66,13 +66,13 @@
 	                        		<td><h3><c:out value="${list.proSeq}"></c:out></h3></td>
 	                        		<td><h3>
 	                        			<select id="proCateSeq" name="proCateSeq">
-	                        				<option value=1  <c:if test="${list.proCateSeq}==1">selected</c:if>>Outer</option>
-	                        				<option value=2  <c:if test="${list.proCateSeq} ==2">selected</c:if>>Top</option>
-	                        				<option value=3  <c:if test="${list.proCateSeq}==3">selected</c:if>>Dress</option>
-	                        				<option value=4  <c:if test="${list.proCateSeq} ==4 ">selected</c:if>>Pants</option>
-	                        				<option value=5  <c:if test="${list.proCateSeq} ==5 ">selected</c:if>>Skirt</option>
-	                        				<option value=6  <c:if test="${list.proCateSeq} ==6">selected</c:if>>Shoes</option>
-	                        				<option value=7  <c:if test="${list.proCateSeq} ==7">selected</c:if>>Bag</option>
+	                        				<option value=1  <c:if test="${list.proCateSeq}=='1'">selected</c:if>>Outer</option>
+	                        				<option value=2  <c:if test="${list.proCateSeq} =='2'">selected</c:if>>Top</option>
+	                        				<option value=3  <c:if test="${list.proCateSeq}=='3'">selected</c:if>>Dress</option>
+	                        				<option value=4  <c:if test="${list.proCateSeq} =='4'">selected</c:if>>Pants</option>
+	                        				<option value=5  <c:if test="${list.proCateSeq} =='5'">selected</c:if>>Skirt</option>
+	                        				<option value=6  <c:if test="${list.proCateSeq} =='6'">selected</c:if>>Shoes</option>
+	                        				<option value=7  <c:if test="${list.proCateSeq} =='7'">selected</c:if>>Bag</option>
 	                        			</select>
 	                        		</h3></td>
 	                        		<td><h3><c:out value="${list.sizeName }"/></h3></td>
