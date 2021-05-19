@@ -26,7 +26,15 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@RequestMapping(value="admin")
-	public String adminPage() {
+	public String adminPage(HttpSession session) {
+		
+		String admin=(String)session.getAttribute("admin");
+		
+		if(admin==null || admin=="")
+		{
+			return "redirect:/";
+		}
+		
 		return "admin/admin.tiles";
 	}
 	
@@ -38,6 +46,13 @@ public class AdminController {
 		List<UserDTO> list= adminService.selectAllUser(userID);
 		
 		model.addAttribute("list",list);
+		
+		String admin=(String)session.getAttribute("admin");
+		
+		if(admin==null || admin=="")
+		{
+			return "redirect:/";
+		}
 		
 		return"admin/adminUser.blocks";
 	}
@@ -57,7 +72,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/product")
-	public String adminProduct(@RequestParam(defaultValue="1") int page, ModelMap model) throws Exception {
+	public String adminProduct(@RequestParam(defaultValue="1") int page, HttpSession session, ModelMap model) throws Exception {
 		System.out.println("product페이지");
 		
 		int count=adminService.countProduct();
@@ -113,24 +128,48 @@ public class AdminController {
 		model.addAttribute("count", count);
 		model.addAttribute("pageDto", pageDto);
 		
+		String admin=(String)session.getAttribute("admin");
+		
+		if(admin==null || admin=="")
+		{
+			return "redirect:/";
+		}
+		
+		
+		
 		return"admin/adminPro.blocks";
 	}
 	
 	@RequestMapping(value="/admin/order")
-	public String adminOrder(ModelMap model) throws Exception {
+	public String adminOrder(HttpSession session, ModelMap model) throws Exception {
 		System.out.println("order페이지");
+		
+		String admin=(String)session.getAttribute("admin");
+		
+		if(admin==null || admin=="")
+		{
+			return "redirect:/";
+		}
 		
 		List<OrderDTO> list=adminService.selectAllOrder();
 		
 		model.addAttribute("list",list);
+
 		
 		return"admin/adminOrd.blocks";
 	}
 	
 	@RequestMapping(value="/admin/inquiry")
-	public String adminInquiry(@RequestParam(defaultValue="1") int page, ModelMap model) throws Exception {
+	public String adminInquiry(@RequestParam(defaultValue="1") int page, HttpSession session, ModelMap model) throws Exception {
 		System.out.println("inquiry페이지");
 		
+		String admin=(String)session.getAttribute("admin");
+		
+		if(admin==null || admin=="")
+		{
+			return "redirect:/";
+		}
+
 		int count=adminService.countInquiry();
 		PageDto pageDto=new PageDto(count,page);
 		//페이징

@@ -58,7 +58,7 @@ function checkAll(){
 		
 		//상품체크박스 해제시 전체체크박스 해제, 모두 선택시 전체체크박스 선택
 		$('input[name=choosePro]').click(function(){ 
-			console.log("갯수: "+${list.size()});
+			console.log("갯수: "+${list.size});
 			   if($('input[name=choosePro]:checked').length == ${list.size}){ 
 			       $('#checkAll').prop("checked",true); 
 			    }else{ 
