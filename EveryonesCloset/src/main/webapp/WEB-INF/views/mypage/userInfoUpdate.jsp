@@ -4,7 +4,19 @@
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/esc/mypage.css">
 
 <script type="text/javascript">
-
+	$(function(){
+		$('#joinBtn').click(function(){
+			if(userPw==null|| userPw==""){
+				alert('비밀번호를 입력하세요');
+				return;
+			}
+			if(userName==null|| userName=="")
+			{
+				alert('이름을 입력하세요');
+				return;
+			}
+		});
+	});
 </script>
 
 <style>
@@ -94,7 +106,7 @@
 			<div class="val_tag" id="userAddrCheck" name="userAddrCheck">&nbsp;</div>
 			
 
-			<button type="button" id="joinBtn" class="btn waves-effect waves-light btn-block btn-warning form_reg2">회원가입</button>
+			<button type="button" id="joinBtn" class="btn waves-effect waves-light btn-block btn-warning form_reg2">회원정보수정</button>
 		</form>
 
 </div>
