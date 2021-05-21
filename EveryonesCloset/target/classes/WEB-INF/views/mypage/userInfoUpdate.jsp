@@ -6,13 +6,19 @@
 <script type="text/javascript">
 	$(function(){
 		$('#joinBtn').click(function(){
-			if(userPw==null|| userPw==""){
+			if($('#userPw').val()==null|| $('#userPw').val()==""){
 				alert('비밀번호를 입력하세요');
 				return;
 			}
-			if(userName==null|| userName=="")
+			if($('#userName').val()==null|| $('#userName').val()=="")
 			{
 				alert('이름을 입력하세요');
+				return;
+			}
+			
+			if($('#postcode').val()==null|| $('#postcode').val()=="")
+			{
+				alert('주소를 입력하세요');
 				return;
 			}
 		});
