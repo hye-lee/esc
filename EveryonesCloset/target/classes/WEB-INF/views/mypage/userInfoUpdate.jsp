@@ -21,6 +21,10 @@
 				alert('주소를 입력하세요');
 				return;
 			}
+			
+			$('#registerForm').attr("action","admin/userInfoUpdata");
+			$('#registerForm').submit();
+			
 		});
 	});
 </script>
