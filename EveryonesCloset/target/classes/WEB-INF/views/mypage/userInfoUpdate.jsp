@@ -22,7 +22,7 @@
 				return;
 			}
 			
-			$('#registerForm').attr("action","admin/userInfoUpdata");
+			$('#registerForm').attr("action","mypage/userInfoUpdata");
 			$('#registerForm').submit();
 			
 		});

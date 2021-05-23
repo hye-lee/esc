@@ -3,6 +3,7 @@ package com.pro.esc.mypage;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -173,5 +174,14 @@ public class MypageController {
 		return "mypage/orderDetail.tiles";
 	}
 	
+	@RequestMapping(value="mapage/userInfoUpdata")
+	public String updataUserInfo(HttpServletRequest req)throws Exception{
+		
+		UserDTO user=new UserDTO();
+		
+		user.setUserName((String)req.getAttribute("userName"));
+		
+		return "";
+	}
 	
 }

@@ -74,5 +74,11 @@ public class MypageServiceImpl implements MypageService {
 		// TODO Auto-generated method stub
 		return mypageDao.selectOrderDetailRec(ordSeq);
 	}
+
+	@Override
+	public int updataUserInfo(UserDTO userDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return mypageDao.updataUserInfo(userDTO);
+	}
 	
 }

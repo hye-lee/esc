@@ -70,5 +70,11 @@ public class MypageDaoImpl implements MypageDao {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(MypageDao.class).selectOrderDetailRec(ordSeq);
 	}
+
+	@Override
+	public int updataUserInfo(UserDTO userDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(MypageDao.class).updataUserInfo(userDTO);
+	}
 	
 }

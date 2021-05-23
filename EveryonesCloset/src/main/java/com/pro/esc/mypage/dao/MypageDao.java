@@ -25,4 +25,6 @@ public interface MypageDao {
 	List<MyOrderDTO> selectOrderDetail(HashMap<String, String> map)throws Exception;
 	
 	OrderDTO selectOrderDetailRec(String ordSeq)throws Exception;
+	
+	int updataUserInfo(UserDTO userDTO) throws Exception;
 }
