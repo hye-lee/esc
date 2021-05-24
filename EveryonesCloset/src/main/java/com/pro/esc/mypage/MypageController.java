@@ -180,7 +180,7 @@ public class MypageController {
 		UserDTO user=new UserDTO();
 		
 		user.setUserName((String)req.getAttribute("userName"));
-		
+		user.setUserAddr((String)req.getAttribute("userAddr"));
 		return "";
 	}
 	
