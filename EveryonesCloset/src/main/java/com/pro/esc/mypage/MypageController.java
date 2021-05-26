@@ -182,6 +182,7 @@ public class MypageController {
 		user.setUserName((String)req.getAttribute("userName"));
 		user.setUserAddr((String)req.getAttribute("userAddr"));
 		user.setUserPostCode((String)req.getAttribute("userPostCode"));
+		user.setUserEmail((String)req.getAttribute("userEmail"));
 		
 		return "";
 	}
