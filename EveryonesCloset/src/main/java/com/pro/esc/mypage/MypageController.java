@@ -175,7 +175,7 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="mapage/userInfoUpdata")
-	public String updataUserInfo(HttpServletRequest req)throws Exception{
+	public String updataUserInfo(HttpServletRequest req,ModelMap model)throws Exception{
 		
 		UserDTO user=new UserDTO();
 		
@@ -185,6 +185,10 @@ public class MypageController {
 		user.setUserEmail((String)req.getAttribute("userEmail"));
 		user.setUserID((String)req.getAttribute("userID"));
 		user.setUserPostCode((String)req.getAttribute("userPostCode"));
+		
+		int count=myService.updataUserInfo(user);
+		
+		model.addAttribute("count",count);
 		
 		return "";
 	}
