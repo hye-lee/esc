@@ -190,7 +190,7 @@ public class MypageController {
 		
 		model.addAttribute("count",count);
 		
-		return "";
+		return "mypage/userInfoUpdate.tiles";
 	}
 	
 }
