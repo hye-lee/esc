@@ -185,7 +185,7 @@ public class MypageController {
 		user.setUserEmail((String)req.getAttribute("userEmail"));
 		user.setUserID((String)req.getAttribute("userID"));
 		user.setUserPostCode((String)req.getAttribute("userPostCode"));
-		
+		user.setUserPw((String)req.getAttribute("userPw"));
 		int count=myService.updataUserInfo(user);
 		
 		model.addAttribute("count",count);
