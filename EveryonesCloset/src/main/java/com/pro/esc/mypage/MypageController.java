@@ -185,7 +185,7 @@ public class MypageController {
 		user.setUserEmail((String)req.getAttribute("userEmail"));
 		user.setUserID((String)req.getAttribute("userID"));
 		user.setUserPostCode((String)req.getAttribute("userPostCode"));
-		user.setUserPw((String)req.getAttribute("userPw"));
+		//user.setUserPw((String)req.getAttribute("userPw"));
 		int count=myService.updataUserInfo(user);
 		
 		model.addAttribute("count",count);
@@ -193,4 +193,8 @@ public class MypageController {
 		return "mypage/userInfoUpdate.tiles";
 	}
 	
+	@RequestMapping(value="mypage/updateUserPw")
+	public String updateUserPw(HttpServletRequest req) throws Exception{
+		return "";
+	}
 }
