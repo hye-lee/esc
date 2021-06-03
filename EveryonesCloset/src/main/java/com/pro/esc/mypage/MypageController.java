@@ -195,6 +195,7 @@ public class MypageController {
 	
 	@RequestMapping(value="mypage/updateUserPw")
 	public String updateUserPw(HttpServletRequest req) throws Exception{
+		user.setUserPw((String)req.getAttribute("userPw"));
 		return "mypage/userUpdateUserPw.tiles";
 	}
 }
