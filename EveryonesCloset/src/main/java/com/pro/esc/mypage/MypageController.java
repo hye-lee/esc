@@ -194,12 +194,15 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="mypage/updateUserPw")
-	public String updateUserPw(HttpServletRequest req) throws Exception{
+	public String updateUserPw(HttpServletRequest req,HttpSession session) throws Exception{
 		UserDTO user=new UserDTO();
 		user.setUserPw((String)req.getAttribute("userPw"));
 		HashMap map=new HashMap();
 		map.put("user",user);
 		myService.checkUserPw(map);
+		
+		String userID=(String)session.getAttribute("login");
+		myService.countMyInquiry(userID);
 		return "mypage/userUpdateUserPw.tiles";
 	}
 }
