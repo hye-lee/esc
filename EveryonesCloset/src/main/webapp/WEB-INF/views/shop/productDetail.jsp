@@ -62,15 +62,14 @@ $(function () {
 </div>
 
  <div id="jstree">
-    <!-- in this example the tree is populated from inline HTML -->
     <ul>
-      <li>Root node 1
+      <li>Root node1
         <ul>
           <li id="child_node_1">Child node 1</li>
           <li>Child node 2</li>
         </ul>
       </li>
-      <li>Root node 2</li>
+      <li>Root node2</li>
     </ul>
   </div>
   
