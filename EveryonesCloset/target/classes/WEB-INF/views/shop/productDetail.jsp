@@ -5,7 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 
 <script>
-$(function () {
+/* $(function () {
     // 6 create an instance when the DOM is ready
     $('#jstree').jstree();
     // 7 bind to events triggered on the tree
@@ -18,7 +18,7 @@ $(function () {
       $('#jstree').jstree('select_node', 'child_node_1');
       $.jstree.reference('#jstree').select_node('child_node_1');
     });
-  });
+  }); */
 
 </script>
 
@@ -61,16 +61,5 @@ $(function () {
 	</div>
 </div>
 
- <div id="jstree">
-    <ul>
-      <li>Root node1
-        <ul>
-          <li id="child_node_1">Child node 1</li>
-          <li>Child node 2</li>
-        </ul>
-      </li>
-      <li>Root node2</li>
-    </ul>
-  </div>
-  
+ 
   
