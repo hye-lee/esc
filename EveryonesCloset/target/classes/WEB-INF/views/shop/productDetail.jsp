@@ -55,9 +55,7 @@
 			<h2>${pro.proCateSeq}</h2>
 			상품사이즈:
 			<h2>${pro.sizeSeq}</h2></div>
-			<div class="col-sm-3">
-			
-			</div>
+		
 	</div>
 </div>
 
