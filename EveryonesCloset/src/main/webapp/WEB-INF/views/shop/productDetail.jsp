@@ -24,7 +24,7 @@
 		<div class="col-sm-3">
 			<img src="${pageContext.servletContext.contextPath }/${pro.proImgPath}" style="width:60%;">
 		</div>
-			<div class="col-sm-3">
+			<div class="col-sm-6">
 				상품이름:
 				<h2>${pro.proName}</h2>
 				상품가격:
