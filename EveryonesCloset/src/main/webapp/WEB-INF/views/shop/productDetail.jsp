@@ -11,7 +11,7 @@
 	font-family: 'Quicksand', sans-serif;
 	font-size: 5em;
 	font-weight: 300;
-	padding: 1% 0 3% 0;
+	padding: 3% 0 3% 0;
 }
 
 </style>
@@ -24,7 +24,7 @@
 		<div class="col-sm-3">
 			<img src="${pageContext.servletContext.contextPath }/${pro.proImgPath}" style="width:60%;">
 		</div>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				상품이름:
 				<h2>${pro.proName}</h2>
 				상품가격:
